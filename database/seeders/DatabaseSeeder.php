@@ -43,10 +43,23 @@ class DatabaseSeeder extends Seeder
             
         ]);
 
+        DB::table('regimes')->insert([
+ 
+            ['id'=>'1', 'type' => 'Sans Lactose'],
+            ['id'=>'2', 'type' => 'Sans Fruits à coque'],
+            
+        ]);
+
         DB::table('allergene_recette')->insert([
  
             ['id'=>'1', 'recette_id' => '1', 'allergene_id' => '1'],
             ['id'=>'2', 'recette_id' => '1', 'allergene_id' => '3'],
+        ]);
+
+        DB::table('recette_regime')->insert([
+ 
+            ['id'=>'1', 'recette_id' => '1', 'regime_id' => '1'],
+            ['id'=>'2', 'recette_id' => '1', 'regime_id' => '2'],
         ]);
     }
 }

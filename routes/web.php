@@ -28,5 +28,7 @@ Route::middleware([
     })->name('dashboard');
 });
 
+
+
 Route::resource('/recettes', RecetteController::class)->except('index');
 Route::get('/recettes', [RecetteController::class, 'index'])->name('index');
