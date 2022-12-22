@@ -74,5 +74,12 @@ class DatabaseSeeder extends Seeder
             ['id'=>'1', 'regime_id' => '1', 'user_id' => '2'],
             ['id'=>'2', 'regime_id' => '1', 'user_id' => '2'],
         ]);
+
+        DB::table('allergene_user')->insert([
+ 
+            ['id'=>'1', 'allergene_id' => '2', 'user_id' => '2'],
+            ['id'=>'2', 'allergene_id' => '3', 'user_id' => '2'],
+        ]);
+
     }
 }
