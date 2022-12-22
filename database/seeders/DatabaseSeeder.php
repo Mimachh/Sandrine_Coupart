@@ -29,6 +29,13 @@ class DatabaseSeeder extends Seeder
             
         ]);
 
+        DB::table('users')->insert([
+ 
+            ['id'=>'1', 'name' => 'Admin', 'last_name' => 'Istrateur', 'email' => 'admin@gmail.com', 'password' => '$2y$10$lqRTDl7IEz3G8mMsOs9AMeuUMfPF77YAOF87XU2LmucpV3i6RpnYy', 'role_id' => '1'],
+            ['id'=>'2', 'name' => 'Uti', 'last_name' => 'Listaeur', 'email' => 'user@gmail.com', 'password' => '$2y$10$lqRTDl7IEz3G8mMsOs9AMeuUMfPF77YAOF87XU2LmucpV3i6RpnYy', 'role_id' => '2'],
+            
+        ]);
+
         DB::table('allergenes')->insert([
  
             ['id'=>'1', 'name' => 'Oeufs'],
@@ -60,6 +67,12 @@ class DatabaseSeeder extends Seeder
  
             ['id'=>'1', 'recette_id' => '1', 'regime_id' => '1'],
             ['id'=>'2', 'recette_id' => '1', 'regime_id' => '2'],
+        ]);
+
+        DB::table('regime_user')->insert([
+ 
+            ['id'=>'1', 'regime_id' => '1', 'user_id' => '2'],
+            ['id'=>'2', 'regime_id' => '1', 'user_id' => '2'],
         ]);
     }
 }

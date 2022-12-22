@@ -63,4 +63,9 @@ class User extends Authenticatable
     {
         return $this->belongsTo('App\Models\Role');
     }
+
+    public function regimes()
+    {
+        return $this->belongsToMany(Regime::class);
+    }
 }
