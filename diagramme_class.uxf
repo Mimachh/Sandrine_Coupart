@@ -1,0 +1,145 @@
+<diagram program="umletino" version="15.0.0"><zoom_level>8</zoom_level><help_text>Space for diagram notes</help_text><element><id>UMLClass</id><coordinates><x>544</x><y>0</y><w>168</w><h>144</h></coordinates><panel_attributes>Users
+
+--
+-id: Auto-Increment
+- nom: varchar(60)
+-prenom: varchar(60)
+-email : varchar(60)
+-password: bcrypt(60)
+--
+role_id: FOREIGN KEY -&gt; table roles
+
+--
++ login(): bool</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>856</x><y>48</y><w>168</w><h>72</h></coordinates><panel_attributes>Roles
+
+--
+-id: Auto-Increment
+-nom: varchar(60)
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>296</x><y>112</y><w>168</w><h>112</h></coordinates><panel_attributes>Admins
+
+--
+-id: Auto-Increment
+--
+user_id: FOREIGN KEY -&gt; table users
+role_id: FOREIGN KEY -&gt; table roles
+
+--
++ is_admin() = middleware
++ create_patient</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>696</x><y>192</y><w>168</w><h>128</h></coordinates><panel_attributes>Patients
+
+--
+-id: Auto-Increment
+
+--
+user_id: FOREIGN KEY -&gt; table users
+role_id: FOREIGN KEY -&gt; table roles
+
+--
+write_back_up()
+starring()
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>440</x><y>64</y><w>120</w><h>64</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>130;10;10;60</additional_attributes></element><element><id>Relation</id><coordinates><x>672</x><y>136</y><w>168</w><h>72</h></coordinates><panel_attributes>lt=&lt;&lt;-</panel_attributes><additional_attributes>10;10;190;70</additional_attributes></element><element><id>Relation</id><coordinates><x>704</x><y>48</y><w>168</w><h>40</h></coordinates><panel_attributes>lt=-
+m1=0..n
+m2=1
+has &gt;
+&lt; has</panel_attributes><additional_attributes>10;20;190;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>56</x><y>312</y><w>216</w><h>168</h></coordinates><panel_attributes>Recettes
+
+--
+-id: Auto-Increment
+-title: varchar(60)
+-description: varchar(255)
+-time_preparation: time
+-rest_time: time
+-cooking_time: time
+-ingredients:varchar(60)
+-steps: varchard(60)
+
+--
+checkbox = visible for patient only
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>136</x><y>32</y><w>200</w><h>296</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n
+&lt; can create 
+
+ belongs To &gt;</panel_attributes><additional_attributes>220;100;220;10;10;10;10;350</additional_attributes></element><element><id>UMLClass</id><coordinates><x>544</x><y>824</y><w>152</w><h>80</h></coordinates><panel_attributes>Allergenes
+
+--
+-id: Auto-Increment
+-name: varchar(60)
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>152</x><y>816</y><w>224</w><h>96</h></coordinates><panel_attributes>Allergene_recette
+
+--
+-id: Auto-Increment
+
+--
+recette_id : FOREIGN KEY -&gt;table recettes
+allergene_id: FOREIGN KEY -&gt; table allergenes
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>88</x><y>472</y><w>184</w><h>360</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n
+has  &gt;
+&lt; belongs To</panel_attributes><additional_attributes>10;10;10;260;190;260;190;430</additional_attributes></element><element><id>Relation</id><coordinates><x>368</x><y>816</y><w>192</w><h>40</h></coordinates><panel_attributes>lt=-
+m1=0..n
+m2=1
+has &gt;
+&lt; belongs To</panel_attributes><additional_attributes>10;20;220;20</additional_attributes></element><element><id>UMLClass</id><coordinates><x>776</x><y>472</y><w>224</w><h>104</h></coordinates><panel_attributes>Allergene_patient
+
+--
+-id: Auto-Increment
+
+--
+patient_id : FOREIGN KEY -&gt;table patients
+allergene_id: FOREIGN KEY -&gt; table allergenes
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>680</x><y>520</y><w>112</w><h>320</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n
+belongs to &gt;
+&lt; has </panel_attributes><additional_attributes>10;380;10;10;120;10</additional_attributes></element><element><id>Relation</id><coordinates><x>776</x><y>312</y><w>128</w><h>176</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n
+has &gt;
+&lt; belongs to </panel_attributes><additional_attributes>10;10;10;110;120;110;120;200</additional_attributes></element><element><id>UMLClass</id><coordinates><x>200</x><y>536</y><w>216</w><h>80</h></coordinates><panel_attributes>Recette_regime
+
+--
+-id: Auto-Increment
+--
+recette_id: FOREIGN KEY -&gt;table recettes
+regime_id: FOREIGN KEY -&gt; table regimes
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>504</x><y>464</y><w>136</w><h>80</h></coordinates><panel_attributes>Regime
+
+--
+-id: Auto-Increment
+-type: varchar(60)
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>416</x><y>280</y><w>216</w><h>80</h></coordinates><panel_attributes>Patient_regime
+
+--
+-id: Auto-Increment
+--
+patient_id: FOREIGN KEY -&gt;table patients
+regime_id: FOREIGN KEY -&gt; table regimes
+
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>264</x><y>424</y><w>176</w><h>128</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n
+has &gt;
+&lt; belongs to</panel_attributes><additional_attributes>10;10;130;10;130;140</additional_attributes></element><element><id>Relation</id><coordinates><x>408</x><y>536</y><w>144</w><h>104</h></coordinates><panel_attributes>lt=-
+m1=0..n
+m2=1
+belongs to &gt;
+&lt; has
+</panel_attributes><additional_attributes>10;90;150;90;150;10</additional_attributes></element><element><id>Relation</id><coordinates><x>624</x><y>312</y><w>136</w><h>48</h></coordinates><panel_attributes>lt=-
+m1=0..n
+m2=1
+belongs to &gt;
+&lt; has</panel_attributes><additional_attributes>10;30;140;30;140;10</additional_attributes></element><element><id>Relation</id><coordinates><x>488</x><y>352</y><w>112</w><h>128</h></coordinates><panel_attributes>lt=-
+m1=1
+m2=0..n
+belongs to &gt;
+&lt; has</panel_attributes><additional_attributes>110;140;110;90;10;90;10;10</additional_attributes></element></diagram>
