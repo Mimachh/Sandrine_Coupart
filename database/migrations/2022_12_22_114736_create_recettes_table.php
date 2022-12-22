@@ -22,6 +22,7 @@ return new class extends Migration
             $table->time('cooking');
             $table->text('ingredients');
             $table->text('steps');
+            $table->boolean('patient_only')->nullable();
             $table->timestamps();
         });
     }

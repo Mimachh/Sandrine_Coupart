@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('allergene_recette', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('recette_id')->constrained();
-            $table->foreignId('allergene_id')->constrained();
+            $table->foreignId('recette_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('allergene_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 

@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::create('recette_regime', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('recette_id')->constrained();
-            $table->foreignId('regime_id')->constrained();
+            $table->foreignId('recette_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('regime_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
         });
     }
 
