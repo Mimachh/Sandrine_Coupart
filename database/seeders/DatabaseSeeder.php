@@ -27,7 +27,26 @@ class DatabaseSeeder extends Seeder
             ['id'=>'1', 'name' => 'Admin'],
             ['id'=>'2', 'name' => 'Patient'],
             
+        ]);
+
+        DB::table('allergenes')->insert([
+ 
+            ['id'=>'1', 'name' => 'Oeufs'],
+            ['id'=>'2', 'name' => 'Lait'],
+            ['id'=>'3', 'name' => 'Farine'],
             
+        ]);
+
+        DB::table('recettes')->insert([
+ 
+            ['id'=>'1', 'title' => 'Crêpes', 'descriptions' => 'Recette de crêpes sans lactose', 'preparation' => '00:00:30', 'rest' => '00:02:30', 'cooking' => '00:00:15', 'ingredients' => 'Oeufs, Sucre, Farine, Lait Végétal (Amande ou Riz), Sel, Beurre', 'steps' => '3'],
+            
+        ]);
+
+        DB::table('allergene_recette')->insert([
+ 
+            ['id'=>'1', 'recette_id' => '1', 'allergene_id' => '1'],
+            ['id'=>'2', 'recette_id' => '1', 'allergene_id' => '3'],
         ]);
     }
 }
