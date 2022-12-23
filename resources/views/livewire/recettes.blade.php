@@ -6,12 +6,46 @@
                 <x-jet-button x-on:click="open = ! open">Ouvrir le formulaire</x-jet-button>
                 <form x-show="open" x-transition>
                     <div class="mb-3">
-                        <label for="title" class="form-label">Titre</label>
-                        <input type="text" class="form-control" wire:model="state.title" id="title">
+                        <label for="title">Titre</label>
+                        <input type="text" wire:model="state.title" id="title">
                     </div>
                     <div class="mb-3">
-                        <label for="description" class="form-label">Description</label>
-                        <input type="text" class="form-control" wire:model="state.description" id="description">
+                        <label for="description">Description</label>
+                        <input type="text" wire:model="state.description" id="description">
+                    </div>
+                    <div class="mb-3">
+                        <label for="preparation">Temps de préparation</label>
+                        <input type="time" wire:model="state.preparation" id="preparation">
+                    </div>
+                    <div class="mb-3">
+                        <label for="rest">Temps de repos</label>
+                        <input type="time" wire:model="state.rest" id="rest">
+                    </div>
+                    <div class="mb-3">
+                        <label for="cooking">Temps de cuisson</label>
+                        <input type="time" wire:model="state.cooking" id="cooking">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ingredients">Liste des ingrédients</label>
+                        <small> Ecrire de préférence sous forme de liste </small>
+                        <textarea class="w-full" wire:model="state.ingredients" id="ingredients"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="steps">Les étapes</label>
+                        <textarea class="w-full" wire:model="state.steps" id="steps"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="patient_only">Pour patient uniquement ?</label>
+                        <input type="checkbox" wire:model="state.patient_only" id="patient_only" value="1">
+                    </div>
+                    <div class="mb-3">
+                        <label for="allergenes">Liste des allergènes </label>
+                        @foreach($allergenes as $index => $allergene)
+                            <div wire:key="allergene-field-{{$allergene->id}}">
+                                <label>{{ $allergene->name }}</label>
+                                <input type="checkbox" wire:model="state.allergenes_id.{{ $index }}" id="allergenes" value="{{ $allergene->id }}">
+                            </div>
+                        @endforeach
                     </div>
                     <div class="mb-3">
                         <x-jet-danger-button type="reset" wire:click.prevent="cancel">Annuler</x-jet-danger-button>
@@ -67,10 +101,10 @@
                                     @endforeach
                                     </ul>
                                 </td>
-                                <td>@if(!$recette->patient_only)
-                                        Tous 
-                                    @else
+                                <td>@if($recette->patient_only === 1)
                                         Patients
+                                    @else
+                                        Tous
                                     @endif
                                 </td>
                                 <td class="px-6 py-4">

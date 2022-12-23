@@ -2,13 +2,17 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Regime;
 use App\Models\Recette;
-use Illuminate\Support\Facades\Validator;
 use Livewire\Component;
+use App\Models\Allergene;
+use Illuminate\Support\Facades\Validator;
 
 class Recettes extends Component
 {
     public $recettes;
+    public $allergenes;
+    public $regimes;
     public $state = [];
 
     public $updateMode = false;
@@ -16,11 +20,19 @@ class Recettes extends Component
     public function mount()
     {
         $this->recettes = Recette::all();
+        $this->regimes = Regime::all();
+        $this->allergenes = Allergene::all();
+        $this->allergenes_id = [''];
     }
 
     private function resetInputFields(){
         $this->reset('state');
     }
+    protected $rules = [
+
+        'allergenes_id.*' => 'nullable|boolean',
+
+    ];
 
     public function store()
     {
@@ -33,13 +45,21 @@ class Recettes extends Component
             'ingredients' => 'required|max:255',
             'steps' => 'required|max:255',
             'patient_only' => 'nullable|boolean',
+            
+            
         ])->validate();
 
-        Recette::create($this->state);
+        $create = Recette::create($this->state);
 
+       
+        $create->allergenes()->sync($this->state['allergenes_id']);
+        
+        
         $this->reset('state');
         $this->recettes = Recette::all();
     }
+
+
 
     public function edit($id)
     {
