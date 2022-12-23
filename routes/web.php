@@ -32,4 +32,5 @@ Route::middleware([
 
 Route::view('recettes', 'admin.recettes');
 Route::view('allergenes', 'admin.allergenes');
+Route::view('regimes', 'admin.regimes');
 
