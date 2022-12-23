@@ -72,6 +72,7 @@
                     <thead class="bg-gray-50">
                         <tr class="px-6 py-2 text-xs text-gray-500 divide-x divide-gray-300">
                             <th class="px-4 py-4" scope="col">#</th>
+                            <th class="px-4 py-4" scope="col">Photo</th>
                             <th class="px-6 py-4" scope="col">Nom</th>
                             <th class="px-6 py-4" scope="col">Prénom</th>
                             <th class="px-6 py-4" scope="col">Mail</th>
@@ -83,6 +84,13 @@
                         @foreach ($users as $user)
                             <tr class="whitespace-nowrap text-xs text-center text-gray-500 divide-x">
                                 <th scope="row">{{ $user->id }}</th>
+                                <td>
+                                    @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
+                                        <div class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+                                            <img class="mx-auto h-8 w-8 rounded-full object-cover" src="{{ $user->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                                        </div>
+                                    @endif
+                                </td>
                                 <td>{{ $user->name}}</td>
                                 <td>{{ $user->last_name}}</td>
                                 <td>{{ $user->role->name}}</td>
