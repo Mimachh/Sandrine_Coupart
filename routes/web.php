@@ -33,4 +33,7 @@ Route::middleware([
 Route::view('recettes', 'admin.recettes');
 Route::view('allergenes', 'admin.allergenes');
 Route::view('regimes', 'admin.regimes');
+Route::view('roles', 'admin.roles');
+Route::view('patients', 'admin.patients');
+
 
