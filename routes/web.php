@@ -1,8 +1,8 @@
 <?php
 
-use App\Http\Livewire\Recettes;
+
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RecetteController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -31,3 +31,5 @@ Route::middleware([
 
 
 Route::view('recettes', 'admin.recettes');
+Route::view('allergenes', 'admin.allergenes');
+

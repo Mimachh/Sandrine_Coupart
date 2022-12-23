@@ -11,6 +11,10 @@ class Allergene extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
     public function recettes()
     {
         return $this->belongsToMany(Recette::class);

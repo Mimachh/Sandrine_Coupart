@@ -172,8 +172,8 @@
                                     @endif
                                 </td>
                                 <td class="px-6 py-4">
-                                    <button wire:click.prevent="edit({{ $recette->id }})" type="button" class="px-4 py-1 text-sm text-blue-600 bg-blue-200 rounded-full">Edit</button>
-                                    <button wire:click.prevent="delete({{ $recette->id }})" type="button" class="px-4 py-1 text-sm text-red-400 bg-red-200 rounded-full">Delete</button>
+                                    <button wire:click.prevent="edit({{ $recette->id }})" type="button" class="px-4 py-1 text-sm text-blue-600 bg-blue-200 rounded-full">Modifier</button>
+                                    <button wire:click.prevent="delete({{ $recette->id }})" type="button" class="px-4 py-1 text-sm text-red-400 bg-red-200 rounded-full">Supprimer</button>
                                 </td>
                             </tr>
                         @endforeach

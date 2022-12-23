@@ -80,16 +80,6 @@ class Recettes extends Component
         $this->updateMode = true;
 
         $recette = Recette::find($id);
-
-       /* $allergene_recette_update = $recette->allergenes;
-
-        foreach($allergene_recette_update as $a)
-        {
-          
-          $allergie = $a;
-        
-        } */
-
         
         $this->state = [
             'id' => $recette->id,
