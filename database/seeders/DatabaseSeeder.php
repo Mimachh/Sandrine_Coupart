@@ -46,7 +46,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('recettes')->insert([
  
-            ['id'=>'1', 'title' => 'Crêpes', 'descriptions' => 'Recette de crêpes sans lactose', 'preparation' => '00:00:30', 'rest' => '00:02:30', 'cooking' => '00:00:15', 'ingredients' => 'Oeufs, Sucre, Farine, Lait Végétal (Amande ou Riz), Sel, Beurre', 'steps' => '3'],
+            ['id'=>'1', 'title' => 'Crêpes', 'description' => 'Recette de crêpes sans lactose', 'preparation' => '00:00:30', 'rest' => '00:02:30', 'cooking' => '00:00:15', 'ingredients' => 'Oeufs, Sucre, Farine, Lait Végétal (Amande ou Riz), Sel, Beurre', 'steps' => '3'],
             
         ]);
 

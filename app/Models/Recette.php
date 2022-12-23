@@ -20,4 +20,15 @@ class Recette extends Model
     {
         return $this->belongsToMany(Regime::class);
     }
+
+    protected $fillable = [
+        'title',
+        'description',
+        'preparation',
+        'rest',
+        'cooking',
+        'ingredients',
+        'steps',
+        'patient_only',
+    ];
 }

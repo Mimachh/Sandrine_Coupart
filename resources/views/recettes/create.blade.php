@@ -1,5 +1,12 @@
 <x-app-layout>
-<div class="bg-green-600">
-    <h1 class="text-red-600">page create</h1>
-</div>
+    <div class="container mt-5 mx-auto">
+
+        <x-slot name="header">
+            <h2 class="font-semibold leading-tight text-center text-gray-100">Liste des recettes disponibles sur le site</h2>
+        </x-slot>
+
+        <div>
+            @livewire('recettes')
+        </div>
+    </div>
 </x-app-layout>
