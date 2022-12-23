@@ -48,6 +48,15 @@
                         @endforeach
                     </div>
                     <div class="mb-3">
+                        <label for="regimes">Type de régimes </label>
+                        @foreach($regimes as $index => $regime)
+                            <div wire:key="regime-field-{{$regime->id}}">
+                                <label>{{ $regime->type }}</label>
+                                <input type="checkbox" wire:model="state.regimes_id.{{ $index }}" id="regimes" value="{{ $regime->id }}">
+                            </div>
+                        @endforeach
+                    </div>
+                    <div class="mb-3">
                         <x-jet-danger-button type="reset" wire:click.prevent="cancel">Annuler</x-jet-danger-button>
                         @if ($updateMode)
                             <x-jet-button class="bg-blue-600" type="submit" wire:click.prevent="update">Mettre à jour</x-jet-button>

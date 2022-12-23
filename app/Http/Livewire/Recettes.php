@@ -29,9 +29,8 @@ class Recettes extends Component
         $this->reset('state');
     }
     protected $rules = [
-
         'allergenes_id.*' => 'nullable|boolean',
-
+        'regimes_id.*' => 'nullable|boolean',
     ];
 
     public function store()
@@ -50,10 +49,8 @@ class Recettes extends Component
         ])->validate();
 
         $create = Recette::create($this->state);
-
-       
         $create->allergenes()->sync($this->state['allergenes_id']);
-        
+        $create->regimes()->sync($this->state['regimes_id']);
         
         $this->reset('state');
         $this->recettes = Recette::all();
