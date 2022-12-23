@@ -13,6 +13,9 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link rel="stylesheet" href="{{ asset('my_css/app.css') }}">
+        <script>
+            [x-cloak] { display: none; }
+        </script>
         <!-- Styles -->
         @livewireStyles
     </head>

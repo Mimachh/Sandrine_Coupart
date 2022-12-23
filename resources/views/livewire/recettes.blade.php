@@ -4,59 +4,113 @@
         <div class="w-full">
             <div x-data="{ open: false }">
                 <x-jet-button x-on:click="open = ! open">Ouvrir le formulaire</x-jet-button>
-                <form x-show="open" x-transition>
-                    <div class="mb-3">
-                        <label for="title">Titre</label>
-                        <input type="text" wire:model="state.title" id="title">
+                <form x-cloak x-show="open" x-transition class="bg-white rounded-lg px-4 py-5 mt-2 shadow hover:shadow-xl">
+
+                    <div class="text-center flex space-x-10 justify-center mb-5">
+                        <!-- Title -->
+                        <div class="mb-3">
+                            <x-jet-label class="underline font-semibold" for="title">Titre</x-jet-label>
+                            <x-jet-input type="text" wire:model="state.title" id="title"/>
+                            @error('title') <small class="text-red-600 italic">{{ $message }}</small> @enderror
+                        </div>
+
+                        <!-- Description -->
+                        <div class="mb-3">
+                            <x-jet-label class="underline font-semibold" for="description">Description</x-jet-label>
+                            <x-jet-input type="text" wire:model="state.description" id="description"/>
+                            @error('description') <small class="text-red-600 italic">{{ $message }}</small> @enderror
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="description">Description</label>
-                        <input type="text" wire:model="state.description" id="description">
+
+                    <!-- TIME GROUP -->
+                    <div class="text-center flex space-x-10 justify-center mb-5">
+                        <!-- Preparation -->
+                        <div class="mb-3 space-y-2">
+                            <x-jet-label class="underline font-semibold" for="preparation">Temps de préparation</x-jet-label>
+                            <x-jet-input type="time" wire:model="state.preparation" id="preparation"/>
+                            @error('preparation') <small class="text-red-600 italic">{{ $message }}</small> @enderror
+                        </div>
+
+                        <!-- Rest -->
+                        <div class="mb-3 space-y-2">
+                            <x-jet-label class="underline font-semibold" for="rest">Temps de repos</x-jet-label>
+                            <x-jet-input type="time" wire:model="state.rest" id="rest"/>
+                            @error('rest') <small class="text-red-600 italic">{{ $message }}</small> @enderror
+                        </div>
+
+                        <!-- Cooking -->
+                        <div class="mb-3 space-y-2">
+                            <x-jet-label class="underline font-semibold" for="cooking">Temps de cuisson</x-jet-label>
+                            <x-jet-input type="time" wire:model="state.cooking" id="cooking"/>
+                            @error('cooking') <small class="text-red-600 italic">{{ $message }}</small> @enderror
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="preparation">Temps de préparation</label>
-                        <input type="time" wire:model="state.preparation" id="preparation">
+
+                    <div class="flex text-center space-x-20 justify-center mb-5">
+                        <!-- Ingredients -->
+                        <div class=" w-full mb-3">
+                            <x-jet-label for="ingredients">Liste des ingrédients</x-jet-label>
+                            <textarea class="w-full shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="state.ingredients" id="ingredients"></textarea>
+                            @error('ingredients') <small class="text-red-600 italic">{{ $message }}</small> @enderror  
+                        </div>
+
+                        <!-- Steps -->
+                        <div class="w-full mb-3">
+                            <x-jet-label for="steps">Les étapes</x-jet-label>
+                            <textarea class="w-full shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="state.steps" id="steps"></textarea>
+                            @error('steps') <small class="text-red-600 italic">{{ $message }}</small> @enderror
+                        </div>
                     </div>
-                    <div class="mb-3">
-                        <label for="rest">Temps de repos</label>
-                        <input type="time" wire:model="state.rest" id="rest">
-                    </div>
-                    <div class="mb-3">
-                        <label for="cooking">Temps de cuisson</label>
-                        <input type="time" wire:model="state.cooking" id="cooking">
-                    </div>
-                    <div class="mb-3">
-                        <label for="ingredients">Liste des ingrédients</label>
-                        <small> Ecrire de préférence sous forme de liste </small>
-                        <textarea class="w-full" wire:model="state.ingredients" id="ingredients"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="steps">Les étapes</label>
-                        <textarea class="w-full" wire:model="state.steps" id="steps"></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="patient_only">Pour patient uniquement ?</label>
-                        <input type="checkbox" wire:model="state.patient_only" id="patient_only" value="1">
-                    </div>
-                    <div class="mb-3">
-                        <label for="allergenes">Liste des allergènes </label>
-                        @foreach($allergenes as $index => $allergene)
-                            <div wire:key="allergene-field-{{$allergene->id}}">
-                                <label>{{ $allergene->name }}</label>
-                                <input type="checkbox" wire:model="state.allergenes_id.{{ $index }}" id="allergenes" value="{{ $allergene->id }}">
+
+                    <!-- CHECKBOXES GROUP -->
+                    <div class="flex space-x-10 justify-center mb-5">
+                        <!-- Allergenes -->
+                        <div class="mb-3">
+                            <x-jet-label class="underline font-semibold" for="allergenes">Liste des allergènes </x-jet-label>
+                            @foreach($allergenes as $index => $allergene)
+                                <div class="flex space-x-2 space-y-2 items-center" wire:key="allergene-field-{{$allergene->id}}">
+                                    <div>
+                                        <x-jet-input type="checkbox" wire:model.defer="state.allergenes_id.{{ $index }}" value="{{ $allergene->id }}"/>
+                                    </div>
+                                    <div>
+                                        <x-jet-label for="{{$allergene->name}}">{{ $allergene->name }}</x-jet-label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <!-- Regime -->
+                        <div class="mb-3">
+                            <x-jet-label class="underline font-semibold" for="regimes">Type de régimes </x-jet-label>
+                            @foreach($regimes as $index => $regime)
+                                <div class="flex space-x-2 space-y-2 items-center" wire:key="regime-field-{{$regime->id}}">
+                                    <div>
+                                        <x-jet-input type="checkbox" wire:model.defer="state.regimes_id.{{ $index }}" value="{{ $regime->id }}"/>
+                                    </div>
+                                    <div>
+                                        <x-jet-label>{{ $regime->type }}</x-jet-label>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+
+                        <!-- Patient_only -->
+                        <div class="mb-3">
+                            <x-jet-label class="underline font-semibold">Visible par patient uniquement ?</x-jet-label>
+                            <div class="flex space-x-2 space-y-2 items-center">
+                                <div>
+                                    <x-jet-input type="checkbox" wire:model.defer="state.patient_only" id="patient_only" value="1"/>
+                                </div>
+                                <div>
+                                <x-jet-label for="patient_only">Oui</x-jet-label>
+                                </div>
                             </div>
-                        @endforeach
+                        </div>
+
                     </div>
-                    <div class="mb-3">
-                        <label for="regimes">Type de régimes </label>
-                        @foreach($regimes as $index => $regime)
-                            <div wire:key="regime-field-{{$regime->id}}">
-                                <label>{{ $regime->type }}</label>
-                                <input type="checkbox" wire:model="state.regimes_id.{{ $index }}" id="regimes" value="{{ $regime->id }}">
-                            </div>
-                        @endforeach
-                    </div>
-                    <div class="mb-3">
+
+                    <!-- Buttons -->
+                    <div class="mb-3 text-center">
                         <x-jet-danger-button type="reset" wire:click.prevent="cancel">Annuler</x-jet-danger-button>
                         @if ($updateMode)
                             <x-jet-button class="bg-blue-600" type="submit" wire:click.prevent="update">Mettre à jour</x-jet-button>
@@ -66,6 +120,7 @@
                     </div>
                 </form>
             </div>
+            
             <div class="border-b border-gray-200 shadow">
                 <h3 class="text-green-600 text-lg text-center mb-5"> {{ $recettes->count() }} Recette(s) en ligne</h3>
                 <table class="divide-y divide-gray-300">
