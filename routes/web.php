@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\RecetteController;
+use App\Http\Livewire\Recettes;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RecetteController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,6 +30,4 @@ Route::middleware([
 });
 
 
-
-Route::resource('/recettes', RecetteController::class)->except('index');
-Route::get('/recettes', [RecetteController::class, 'index'])->name('index');
+Route::view('recettes', 'admin.recettes');

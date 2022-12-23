@@ -13,10 +13,8 @@ class RecetteController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $recettes = Recette::all();
-        
-        return view('recettes.index', ['recettes' => $recettes]);
+    {   
+        return view('recettes.index');
     }
 
     /**

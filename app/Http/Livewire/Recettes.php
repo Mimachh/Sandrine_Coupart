@@ -61,10 +61,13 @@ class Recettes extends Component
         )->validate();
 
         $create = Recette::create($this->state);
-
-        $create->allergenes()->sync($this->state['allergenes_id']);
-
-        $create->regimes()->sync($this->state['regimes_id']);
+        if(isset($this->state['allergenes_id'])){
+            $create->allergenes()->sync($this->state['allergenes_id']);
+        }
+        if(isset($this->state['regimes_id'])){
+            $create->regimes()->sync($this->state['regimes_id']);
+        }
+        
 
         
         $this->reset('state');
@@ -123,6 +126,10 @@ class Recettes extends Component
 
         if ($this->state['id']) {
             $recette = Recette::find($this->state['id']);
+
+            $recette->allergenes()->detach();
+            $recette->regimes()->detach();
+
             $recette->update([
                 'title' => $this->state['title'],
                 'description' => $this->state['description'],
@@ -134,7 +141,12 @@ class Recettes extends Component
                 'patient_only' => $this->state['patient_only'],
             ]);
             
-           
+            if(isset($this->state['allergenes_id'])){
+                $recette->allergenes()->sync($this->state['allergenes_id']);
+            }
+            if(isset($this->state['regimes_id'])){
+                $recette->regimes()->sync($this->state['regimes_id']);
+            }
 
             $this->updateMode = false;
             $this->reset('state');
