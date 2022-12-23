@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\Allergene;
@@ -89,6 +89,6 @@ class Allergenes extends Component
 
     public function render()
     {
-        return view('livewire.allergenes');
+        return view('livewire.admin.allergenes');
     }
 }

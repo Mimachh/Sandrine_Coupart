@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use App\Models\Regime;
 use App\Models\Recette;
@@ -154,6 +154,6 @@ class Recettes extends Component
 
     public function render()
     {
-        return view('livewire.recettes');
+        return view('livewire.admin.recettes');
     }
 }

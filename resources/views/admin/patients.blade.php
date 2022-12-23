@@ -5,7 +5,7 @@
     <div class="container mt-5 pb-5 mx-auto">
 
         <div>
-            @livewire('patients')
+            @livewire('admin.patients')
         </div>
     </div>
 </x-app-layout>

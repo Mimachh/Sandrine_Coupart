@@ -5,7 +5,7 @@
     <div class="container mt-5 pb-5 mx-auto">
 
         <div>
-            @livewire('recettes')
+            @livewire('admin.recettes')
         </div>
     </div>
 </x-app-layout>

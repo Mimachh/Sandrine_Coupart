@@ -5,7 +5,7 @@
     <div class="container mt-5 pb-5 mx-auto">
 
         <div>
-            @livewire('roles')
+            @livewire('admin.users')
         </div>
     </div>
 </x-app-layout>

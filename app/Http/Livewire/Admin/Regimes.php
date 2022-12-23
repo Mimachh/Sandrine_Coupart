@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire;
+namespace App\Http\Livewire\Admin;
 
 use App\Models\Regime;
 use Livewire\Component;
@@ -88,6 +88,6 @@ class Regimes extends Component
 
     public function render()
     {
-        return view('livewire.regimes');
+        return view('livewire.admin.regimes');
     }
 }
