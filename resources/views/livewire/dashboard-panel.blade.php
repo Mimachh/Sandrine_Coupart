@@ -1,7 +1,7 @@
 <div>
 
         <!-- Sidebar -->
-        <div class="rounded-r-3xl fixed flex flex-col top-0 left-0 w-14 hover:w-52 md:w-52 bg-blue-900 h-full text-white transition-all duration-300 border-none z-10 sidebar">
+        <div class="rounded-r-3xl fixed flex flex-col top-0 left-0 w-14 hover:w-52 md:w-52 bg-red-900 h-full text-white transition-all duration-300 border-none z-10 sidebar">
             <div class="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
                 <ul class="flex flex-col py-4 space-y-1">
                     <li class="px-5 mb-4 hidden md:block">
@@ -83,7 +83,16 @@
         <!-- ./Sidebar -->
     
     @if($currentPage === 1)
-        <div class="bg-red-600">Coucou</div>
+        <div class="bg-red-600 text-center ml-52 mx-auto">
+            <h1> Bonjour {{ auth()->user()->name }}</h1>
+            <div>
+               <h2>Vos derniers ajouts </h2> 
+                    <h3>Dernière recette enregistrée : {{ $last_recette->title}} le {{ $last_recette->created_date()}}</h3>
+                    <h3>Dernière utilisateur enregistré : {{ $last_user->name}} {{ $last_user->last_name}} {{ $last_user->created_date()}}</h3>
+                    <h3>Dernière allergène enregistré : {{ $last_allergene->name}} {{ $last_allergene->created_date()}}</h3>
+                    <h3>Dernière regime enregistré : {{ $last_regime->type}} {{ $last_regime->created_date()}}</h3>
+            </div>
+        </div>
     @endif
 
     @if($currentPage === 2)

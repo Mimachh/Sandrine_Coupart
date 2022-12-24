@@ -22,4 +22,16 @@ class Regime extends Model
     {
         return $this->belongsToMany(Recette::class);
     }
+
+    public function created_date() 
+    {
+        $date = $this->created_at;
+        return "le ".date('d/m/y', strtotime($date)). " à ".date('h', strtotime($date))."h".date('m', strtotime($date));
+    }
+
+    public function updated_date() 
+    {
+        $date = $this->updated_at;
+        return date('d/m/y', strtotime($date));
+    }
 }

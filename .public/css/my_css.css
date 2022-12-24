@@ -1259,6 +1259,11 @@ select {
   margin-right: 8rem;
 }
 
+.mx-5 {
+  margin-left: 1.25rem;
+  margin-right: 1.25rem;
+}
+
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -2124,6 +2129,21 @@ select {
 .bg-red-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(254 242 242 / var(--tw-bg-opacity));
+}
+
+.bg-red-800 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(153 27 27 / var(--tw-bg-opacity));
+}
+
+.bg-red-400 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+
+.bg-red-900 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(127 29 29 / var(--tw-bg-opacity));
 }
 
 .bg-opacity-25 {
