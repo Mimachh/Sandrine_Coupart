@@ -1254,6 +1254,11 @@ select {
   margin-bottom: 2.5rem;
 }
 
+.mx-32 {
+  margin-left: 8rem;
+  margin-right: 8rem;
+}
+
 .ml-3 {
   margin-left: 0.75rem;
 }
@@ -1392,6 +1397,18 @@ select {
 
 .mb-14 {
   margin-bottom: 3.5rem;
+}
+
+.ml-52 {
+  margin-left: 13rem;
+}
+
+.ml-64 {
+  margin-left: 16rem;
+}
+
+.mr-10 {
+  margin-right: 2.5rem;
 }
 
 .block {
@@ -2321,6 +2338,10 @@ select {
   padding-left: 0.5rem;
 }
 
+.pl-10 {
+  padding-left: 2.5rem;
+}
+
 .text-left {
   text-align: left;
 }
@@ -2701,6 +2722,10 @@ select {
 
 .hover\:w-64:hover {
   width: 16rem;
+}
+
+.hover\:w-52:hover {
+  width: 13rem;
 }
 
 .hover\:scale-105:hover {
@@ -3304,6 +3329,10 @@ select {
 
   .md\:w-64 {
     width: 16rem;
+  }
+
+  .md\:w-52 {
+    width: 13rem;
   }
 
   .md\:grid-cols-3 {
