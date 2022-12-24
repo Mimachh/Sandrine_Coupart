@@ -24,7 +24,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
         return view('dashboard');
     })->name('dashboard');
 
-    Route::middleware(['role:Patient'])->prefix('admin/')->group(function () {
+    Route::middleware(['role:Admin'])->prefix('admin/')->group(function () {
         Route::view('recettes', 'admin.recettes');
         Route::view('allergenes', 'admin.allergenes');
         Route::view('regimes', 'admin.regimes');
