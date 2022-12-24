@@ -5,9 +5,10 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Role;
 use App\Models\User;
 use Livewire\Component;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class Users extends Component
 {
@@ -116,10 +117,22 @@ class Users extends Component
         }
     }
 
+    protected function profilePhotoDisk()
+    {
+        return isset($_ENV['VAPOR_ARTIFACT_NAME']) ? 's3' : config('jetstream.profile_photo_disk', 'public');
+    }
+
+
     public function delete($id)
     {
         if($id){
+            $user = User::where('id',$id)->first();
             User::where('id',$id)->delete();
+            
+            if($user->profile_photo_path)
+            {
+                Storage::disk($this->profilePhotoDisk())->delete($user->profile_photo_path);
+            }
             $this->users = User::all();
         }
     }

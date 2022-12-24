@@ -87,7 +87,7 @@
                                 <td>
                                     @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                         <div class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
-                                            <img class="mx-auto h-8 w-8 rounded-full object-cover" src="{{ $user->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
+                                            <img class="mx-auto h-8 w-8 rounded-full object-cover" src="{{ $user->profile_photo_url }}" alt="{{ $user->name }}" />
                                         </div>
                                     @endif
                                 </td>
