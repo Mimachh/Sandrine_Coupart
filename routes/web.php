@@ -19,21 +19,23 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::middleware([
-    'auth:sanctum',
-    config('jetstream.auth_session'),
-    'verified'
-])->group(function () {
+Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::middleware(['role:Patient'])->prefix('admin/')->group(function () {
+        Route::view('recettes', 'admin.recettes');
+        Route::view('allergenes', 'admin.allergenes');
+        Route::view('regimes', 'admin.regimes');
+        Route::view('users', 'admin.users');
+        Route::view('patients', 'admin.patients');
+    });
 });
 
 
-Route::view('recettes', 'admin.recettes');
-Route::view('allergenes', 'admin.allergenes');
-Route::view('regimes', 'admin.regimes');
-Route::view('users', 'admin.users');
-Route::view('patients', 'admin.patients');
+
+
+
 
 
