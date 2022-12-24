@@ -93,8 +93,10 @@
                                 </td>
                                 <td>{{ $user->name}}</td>
                                 <td>{{ $user->last_name}}</td>
-                                <td>{{ $user->role->name}}</td>
                                 <td>{{ $user->email}}</td>
+                                <td>{{ $user->role->name}} <br>
+                                   
+                                </td>
                                 <td class="px-6 py-4">
                                     <button wire:click.prevent="edit({{ $user->id }})" type="button" class="px-4 py-1 text-sm text-blue-600 bg-blue-200 rounded-full">Modifier</button>
                                     <button wire:click.prevent="delete({{ $user->id }})" type="button" class="px-4 py-1 text-sm text-red-400 bg-red-200 rounded-full">Supprimer</button>

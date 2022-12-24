@@ -66,7 +66,7 @@
                     </tbody>
                 </table>
                 <div class="bg-white border-t px-4 py-2">
-                {{ $regimesWithPagination->links() }}
+                    {{ $regimesWithPagination->links() }}
                 </div>
             </div>
         </div>

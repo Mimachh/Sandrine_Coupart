@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Regime;
+use App\Models\Patient;
 use App\Models\Allergene;
 use Laravel\Sanctum\HasApiTokens;
 use Laravel\Jetstream\HasProfilePhoto;
@@ -77,4 +78,5 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Allergene::class);
     }
+
 }
