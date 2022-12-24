@@ -55,6 +55,7 @@ class Users extends Component
             'password' => Hash::make($this->state['password']),
         ]);
              
+        $this->emit('flash', 'Nouvel utilisateur crée ! ', 'success');
         $this->reset('state');
         $this->users = User::all();
     }
@@ -111,6 +112,7 @@ class Users extends Component
                 'role_id' => $this->state['role_id'],
             ]);
             
+            $this->emit('flash', 'Utilisateur mis à jour ! ', 'info');
             $this->updateMode = false;
             $this->reset('state');
             $this->users = User::all();
@@ -133,12 +135,13 @@ class Users extends Component
             {
                 Storage::disk($this->profilePhotoDisk())->delete($user->profile_photo_path);
             }
+            $this->emit('flash', 'Utilisateur supprimé ! ', 'error');
             $this->users = User::all();
         }
     }
 
     public function render()
     {
-        return view('livewire.admin.users');
+        return view('livewire.admin.users', ['usersWithPagination' => User::paginate(5)]);
     }
 }

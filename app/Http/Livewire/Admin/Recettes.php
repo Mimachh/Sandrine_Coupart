@@ -68,7 +68,7 @@ class Recettes extends Component
             $create->regimes()->sync($this->state['regimes_id']);
         }
         
-
+        $this->emit('flash', 'Une nouvelle recette à bien été crée ! ', 'success');
         
         $this->reset('state');
         $this->recettes = Recette::all();
@@ -138,6 +138,8 @@ class Recettes extends Component
                 $recette->regimes()->sync($this->state['regimes_id']);
             }
 
+            $this->emit('flash', 'Recette bien mise à jour ! ', 'info');
+
             $this->updateMode = false;
             $this->reset('state');
             $this->recettes = Recette::all();
@@ -148,12 +150,13 @@ class Recettes extends Component
     {
         if($id){
             Recette::where('id',$id)->delete();
+            $this->emit('flash', 'La recette a été supprimée ! ', 'error');
             $this->recettes = Recette::all();
         }
     }
 
     public function render()
     {
-        return view('livewire.admin.recettes');
+        return view('livewire.admin.recettes', ['recettesWithPagination' => Recette::paginate(5)]);
     }
 }

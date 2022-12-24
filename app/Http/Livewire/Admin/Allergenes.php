@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
 use App\Models\Allergene;
+use Livewire\WithPagination;
 use Illuminate\Support\Facades\Validator;
 
 class Allergenes extends Component
@@ -12,6 +13,8 @@ class Allergenes extends Component
     public $state = [];
 
     public $updateMode = false;
+
+    use WithPagination;
 
     public function mount()
     {
@@ -33,6 +36,8 @@ class Allergenes extends Component
         )->validate();
 
         Allergene::create($this->state);
+
+        $this->emit('flash', 'Un nouvel allergene à bien été crée ! ', 'success');
              
         $this->reset('state');
         $this->allergenes = Allergene::all();
@@ -48,6 +53,7 @@ class Allergenes extends Component
             'id' => $recette->id,
             'name' => $recette->name,
         ];
+
     }
 
     public function cancel()
@@ -73,6 +79,8 @@ class Allergenes extends Component
                 'name' => $this->state['name'],
             ]);
             
+            $this->emit('flash', 'Votre allergène à été mis à jour ! ', 'info');
+
             $this->updateMode = false;
             $this->reset('state');
             $this->allergenes = Allergene::all();
@@ -83,12 +91,13 @@ class Allergenes extends Component
     {
         if($id){
             Allergene::where('id',$id)->delete();
+            $this->emit('flash', 'Allergène supprimé ! ', 'error');
             $this->allergenes = Allergene::all();
         }
     }
 
     public function render()
     {
-        return view('livewire.admin.allergenes');
+        return view('livewire.admin.allergenes', ['allergenesWithPagination' => Allergene::paginate(5)]);
     }
 }

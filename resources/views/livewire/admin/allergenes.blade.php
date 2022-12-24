@@ -35,7 +35,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-300">
-                        @foreach ($allergenes as $allergene)
+                        @foreach ($allergenesWithPagination as $allergene)
                             <tr class="whitespace-nowrap text-xs text-center text-gray-500 divide-x">
                                 <th scope="row">{{ $allergene->id }}</th>
                                 <td>{{ $allergene->name}}</td>
@@ -65,6 +65,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="bg-white border-t px-4 py-2">
+                {{ $allergenesWithPagination->links() }}
+                </div>
             </div>
         </div>
     </div>

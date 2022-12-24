@@ -141,7 +141,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-300">
-                        @foreach ($recettes as $recette)
+                        @foreach ($recettesWithPagination as $recette)
                             <tr class="whitespace-nowrap text-xs text-center text-gray-500 divide-x">
                                 <th scope="row">{{ $recette->id }}</th>
                                 <td>{{ $recette->title}}</td>
@@ -179,6 +179,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="bg-white border-t px-4 py-2">
+                {{ $recettesWithPagination->links() }}
+                </div>
             </div>
         </div>
     </div>

@@ -32,6 +32,9 @@ class Regimes extends Component
         )->validate();
 
         Regime::create($this->state);
+
+        $this->emit('flash', 'Nouveau régime ajouté ! ', 'success');
+
              
         $this->reset('state');
         $this->regimes = Regime::all();
@@ -72,6 +75,7 @@ class Regimes extends Component
                 'type' => $this->state['type'],
             ]);
             
+            $this->emit('flash', 'Régime mis à jour ! ', 'info');
             $this->updateMode = false;
             $this->reset('state');
             $this->regimes = Regime::all();
@@ -82,12 +86,13 @@ class Regimes extends Component
     {
         if($id){
             Regime::where('id',$id)->delete();
+            $this->emit('flash', 'Régime supprimé ! ', 'error');
             $this->regimes = Regime::all();
         }
     }
 
     public function render()
     {
-        return view('livewire.admin.regimes');
+        return view('livewire.admin.regimes', ['regimesWithPagination' => Regime::paginate(5)]);
     }
 }

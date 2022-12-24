@@ -1543,6 +1543,12 @@ select {
   cursor: pointer;
 }
 
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
 .list-inside {
   list-style-position: inside;
 }
@@ -2912,6 +2918,11 @@ select {
     grid-column: span 1 / span 1;
   }
 
+  .md\:mx-32 {
+    margin-left: 8rem;
+    margin-right: 8rem;
+  }
+
   .md\:mt-0 {
     margin-top: 0px;
   }
@@ -2965,6 +2976,11 @@ select {
 @media (min-width: 1024px) {
   .lg\:col-span-4 {
     grid-column: span 4 / span 4;
+  }
+
+  .lg\:mx-32 {
+    margin-left: 8rem;
+    margin-right: 8rem;
   }
 
   .lg\:px-8 {

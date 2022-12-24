@@ -13,9 +13,11 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link rel="stylesheet" href="{{ asset('my_css/app.css') }}">
+        <script src="https://cdn.tailwindcss.com"></script>
         <script>
             [x-cloak] { display: none; }
         </script>
+
         <!-- Styles -->
         @livewireStyles
     </head>
@@ -36,6 +38,8 @@
 
             <!-- Page Content -->
             <main>
+                @livewire('flash')
+
                 {{ $slot }}
             </main>
         </div>

@@ -81,7 +81,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-300">
-                        @foreach ($users as $user)
+                        @foreach ($usersWithPagination as $user)
                             <tr class="whitespace-nowrap text-xs text-center text-gray-500 divide-x">
                                 <th scope="row">{{ $user->id }}</th>
                                 <td>
@@ -103,6 +103,9 @@
                         @endforeach
                     </tbody>
                 </table>
+                <div class="bg-white border-t px-4 py-2">
+                    {{ $usersWithPagination->links() }}
+                </div>
             </div>
         </div>
     </div>
