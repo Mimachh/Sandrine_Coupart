@@ -2,9 +2,8 @@
 <div class="container flex justify-center mx-auto">
     <div class="flex flex-col">
         <div class="w-full">
-            <div x-data="{ open: false }">
-                <x-jet-button x-on:click="open = ! open">Ouvrir le formulaire</x-jet-button>
-                <form x-cloak x-show="open" x-transition class="bg-white rounded-lg px-4 py-5 mt-2 shadow hover:shadow-xl">
+                @if($updateMode)
+                <form class="bg-white rounded-lg px-4 py-5 mt-2 shadow hover:shadow-xl">
 
                     <div class="text-center flex space-x-10 justify-center mb-5">
                         <!-- Title -->
@@ -119,8 +118,7 @@
                         @endif
                     </div>
                 </form>
-            </div>
-            
+                @endif
             <div class="border-b border-gray-200 shadow">
                 <h3 class="text-green-600 text-lg text-center mb-5"> {{ $recettes->count() }} Recette(s) en ligne</h3>
                 <table class="divide-y divide-gray-300">

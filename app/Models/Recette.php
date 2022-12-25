@@ -41,6 +41,6 @@ class Recette extends Model
     public function updated_date() 
     {
         $date = $this->updated_at;
-        return date('d/m/y', strtotime($date));
+        return "le ".date('d/m/y', strtotime($date)). " à ".date('h', strtotime($date))."h".date('m', strtotime($date));
     }
 }

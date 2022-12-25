@@ -83,44 +83,76 @@
         <!-- ./Sidebar -->
     
     @if($currentPage === 1)
-        <div class="bg-red-600 text-center ml-52 mx-auto">
-            <h1> Bonjour {{ auth()->user()->name }}</h1>
-            <div>
-               <h2>Vos derniers ajouts </h2> 
-                    <h3>Dernière recette enregistrée : {{ $last_recette->title}} le {{ $last_recette->created_date()}}</h3>
-                    <h3>Dernière utilisateur enregistré : {{ $last_user->name}} {{ $last_user->last_name}} {{ $last_user->created_date()}}</h3>
-                    <h3>Dernière allergène enregistré : {{ $last_allergene->name}} {{ $last_allergene->created_date()}}</h3>
-                    <h3>Dernière regime enregistré : {{ $last_regime->type}} {{ $last_regime->created_date()}}</h3>
+        <div class="text-center ml-12 md:ml-52 mt-10 space-y-5 mb-5">
+            <div class="mx-5 md:mx-32 py-5 rounded-lg bg-cyan-400 hover:bg-cyan-500 shadow hover:shadow-lg">
+                <h1 class="font-bold text-2xl"> Bonjour {{ auth()->user()->name }}</h1>
+                <div class="mt-10 space-y-5">
+                    <h2 class="underline font-semibold text-lg">Vos derniers ajouts : </h2> 
+                    <ul class="space-y-2">
+                        <li>
+                            <h3>Dernière recette enregistrée : {{ $last_recette->title}} le {{ $last_recette->created_date()}}</h3>
+                        </li>
+                        <li>
+                            <h3>Dernière utilisateur enregistré : {{ $last_user->name}} {{ $last_user->last_name}} {{ $last_user->created_date()}}</h3>
+                        </li>
+                        <li>
+                            <h3>Dernière allergène enregistré : {{ $last_allergene->name}} {{ $last_allergene->created_date()}}</h3>
+                        </li>
+                        <li>
+                            <h3>Dernier regime enregistré : {{ $last_regime->type}} {{ $last_regime->created_date()}}</h3>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mb-5 mx-5 md:mx-32 py-5 rounded-lg bg-cyan-400 hover:bg-cyan-500 shadow hover:shadow-lg">
+                <div class=" space-y-5">
+                    <h2 class="underline font-semibold text-lg">Vos derniers ajouts : </h2> 
+                    <ul class="space-y-2">
+                        <li>
+                            <h3>Dernière recette enregistrée : {{ $last_recette->title}} le {{ $last_recette->created_date()}}</h3>
+                        </li>
+                        <li>
+                            <h3>Dernière utilisateur enregistré : {{ $last_user->name}} {{ $last_user->last_name}} {{ $last_user->created_date()}}</h3>
+                        </li>
+                        <li>
+                            <h3>Dernière allergène enregistré : {{ $last_allergene->name}} {{ $last_allergene->created_date()}}</h3>
+                        </li>
+                        <li>
+                            <h3>Dernier regime enregistré : {{ $last_regime->type}} {{ $last_regime->created_date()}}</h3>
+                        </li>
+                    </ul>
+                </div>
             </div>
         </div>
     @endif
 
     @if($currentPage === 2)
-        <div>
+        <div class="ml-52 mt-10">
             @livewire('admin.users')
         </div>
     @endif
 
     @if($currentPage === 3)
-        <div>
+        <div class="ml-52 mt-10">
             @livewire('admin.patients')
         </div>
     @endif
 
     @if($currentPage === 4)
-        <div>
+        <div class="ml-64 mr-10 mt-10">
             @livewire('admin.recettes')
         </div>
     @endif
 
     @if($currentPage === 5)
-        <div>
+        <div class="ml-52 mt-10">
             @livewire('admin.allergenes')
         </div>
     @endif
 
     @if($currentPage === 6)
-        <div>
+        <div class="ml-52 mt-10">
             @livewire('admin.regimes')
         </div>
     @endif

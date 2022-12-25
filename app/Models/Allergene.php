@@ -33,7 +33,7 @@ class Allergene extends Model
 
     public function updated_date() 
     {
-        $date = $this->update_at;
-        return date('d/m/y', strtotime($date));
+        $date = $this->updated_at;
+        return "le ".date('d/m/y', strtotime($date)). " à ".date('h', strtotime($date))."h".date('m', strtotime($date));
     }
 }

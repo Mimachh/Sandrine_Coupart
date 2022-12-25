@@ -35,7 +35,9 @@
 
             <!-- Page Content -->
             <main>
-                @livewire('flash')
+                <div class="ml-52">
+                    @livewire('flash')
+                </div>
 
                 {{ $slot }}
             </main>
