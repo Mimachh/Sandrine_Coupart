@@ -21,7 +21,7 @@
         <!-- Styles -->
         @livewireStyles
     </head>
-    <body class="font-sans antialiased">
+    <body class="font-sans antialiased bg-gray-900">
  
 
             <!-- Page Heading -->

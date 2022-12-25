@@ -62,10 +62,11 @@
                     </div>
                 </form>
             @endif
-            <div class="border-b border-gray-200 shadow">
-                <h3 class="text-green-600 text-lg text-center mb-5"> {{ $patients->count() }} patient(s) répertorié(s)</h3>
+
+            <h3 class="text-green-600 text-lg text-center mb-5"> {{ $patients->count() }} patient(s) répertorié(s)</h3>
+            <div class="border-b border-gray-200 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/60 shadow-cyan-500/50">
                 <table class="divide-y divide-gray-300">
-                    <thead class="bg-gray-50">
+                    <thead class="bg-gray-200">
                         <tr class="px-6 py-2 text-xs text-gray-500 divide-x divide-gray-300">
                             <th class="px-4 py-4" scope="col">#</th>
                             <th class="px-6 py-4"scope="col">Nom du patient</th>
@@ -78,7 +79,7 @@
                     <tbody class="bg-white divide-y divide-gray-300">
                         @forelse ($patients as $patient)
                             <tr class="whitespace-nowrap text-xs text-center text-gray-500 divide-x">
-                                <th scope="row">{{ $patient->id }}</th>
+                                <th class="bg-gray-200" scope="row">{{ $patient->id }}</th>
                                 <td>{{ $patient->name}}</td>
                                 <td>{{ $patient->last_name}}</td>
                                 <td>

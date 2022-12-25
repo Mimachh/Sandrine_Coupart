@@ -1,5 +1,5 @@
 
-<div class="container flex justify-center mx-auto">
+<div class="container flex justify-center ml-10 mr-10">
     <div class="flex flex-col">
         <div class="w-full">
                 @if($updateMode)
@@ -119,29 +119,30 @@
                     </div>
                 </form>
                 @endif
-            <div class="border-b border-gray-200 shadow">
-                <h3 class="text-green-600 text-lg text-center mb-5"> {{ $recettes->count() }} Recette(s) en ligne</h3>
+
+            <h3 class="text-green-600 text-lg text-center mb-5"> {{ $recettes->count() }} Recette(s) en ligne</h3>
+            <div class="border-b border-gray-200 shadow-lg hover:shadow-2xl hover:shadow-cyan-500/60 shadow-cyan-500/50">
                 <table class="divide-y divide-gray-300">
-                    <thead class="bg-gray-50">
+                    <thead class="bg-gray-200">
                         <tr class="px-6 py-2 text-xs text-gray-500 divide-x divide-gray-300">
-                            <th scope="col">#</th>
-                            <th scope="col">Titre</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Temps de préparation</th>
-                            <th scope="col">Temps de repos</th>
-                            <th scope="col">Temps de cuisson</th>
-                            <th scope="col">Ingrédients</th>
-                            <th scope="col">Etapes</th>
-                            <th scope="col">Type de régime</th>
-                            <th scope="col">Les allergènes</th>
-                            <th scope="col">Visible par ?</th>
-                            <th scope="col"> -- </th>
+                            <th class="px-4 py-4" scope="col">#</th>
+                            <th class="px-4 py-4" scope="col">Titre</th>
+                            <th class="px-4 py-4" scope="col">Description</th>
+                            <th class="px-4 py-4" scope="col">Temps de préparation</th>
+                            <th class="px-4 py-4" scope="col">Temps de repos</th>
+                            <th class="px-4 py-4" scope="col">Temps de cuisson</th>
+                            <th class="px-4 py-4" scope="col">Ingrédients</th>
+                            <th class="px-4 py-4" scope="col">Etapes</th>
+                            <th class="px-4 py-4" scope="col">Type de régime</th>
+                            <th class="px-4 py-4" scope="col">Les allergènes</th>
+                            <th class="px-4 py-4" scope="col">Visible par ?</th>
+                            <th class="px-4 py-4" scope="col"> -- </th>
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y divide-gray-300">
                         @foreach ($recettesWithPagination as $recette)
                             <tr class="whitespace-nowrap text-xs text-center text-gray-500 divide-x">
-                                <th scope="row">{{ $recette->id }}</th>
+                                <th class="bg-gray-200"  scope="row">{{ $recette->id }}</th>
                                 <td>{{ $recette->title}}</td>
                                 <td>{{ $recette->description }}</td>
                                 <td>{{ $recette->preparation }}</td>
