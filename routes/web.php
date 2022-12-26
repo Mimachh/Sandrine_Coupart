@@ -1,7 +1,8 @@
 <?php
 
-use App\Http\Controllers\ContactController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\RecetteController;
 
 
 /*
@@ -34,10 +35,13 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 });
 
 
+
+
 Route::resource('contact', ContactController::class)->except('store');
 Route::post('contact/store', [ContactController::class, 'store'])->name('contact.store');
 Route::view('confirmation', 'contact.confirmation')->name('contact.confirmation');
 
 
 
+Route::get('recettes/', [RecetteController::class, 'index'])->name('recettes.index');
 
