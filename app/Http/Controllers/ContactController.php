@@ -43,6 +43,17 @@ class ContactController extends Controller
             'phone' => 'required|max:10',
             'subject_id' => 'required|min:1',
             'message' => 'required|max:255',
+        ], [
+            'name.required' => 'Votre nom doit être renseigné',
+            'name.max' => 'Votre nom ne doit pas dépasser 60 caractères',
+            'last_name.required' => 'Votre prénom doit être renseigné',
+            'email.max' => 'Votre mail ne doit pas dépasser 255 caractères',
+            'email.required' => 'Vous devez renseigner votre mail',
+            'phone.required' => 'Merci d\'indiquer votre numéro',
+            'phone.max' => 'Votre numéro doit être composé de 10 chiffres maximum',
+            'subject_id.required' => 'Vous devez indiquer un sujet',
+            'message.required' => 'Merci de renseigner votre demande',
+            'message.max' => 'Votre message ne doit pas dépasser 255 caractères',
         ]);
 
         $create = Contact::create($data);

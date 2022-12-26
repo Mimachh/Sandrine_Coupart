@@ -23,7 +23,7 @@
                         {{ __('Les recettes') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="">
+                    <x-jet-nav-link href="{{ route('contact.create') }}">
                         {{ __('Nous contacter') }}
                     </x-jet-nav-link>
                 </div>
