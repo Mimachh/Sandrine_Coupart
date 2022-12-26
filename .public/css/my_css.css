@@ -2676,6 +2676,11 @@ select {
   color: rgb(113 63 18 / var(--tw-text-opacity));
 }
 
+.text-cyan-600 {
+  --tw-text-opacity: 1;
+  color: rgb(8 145 178 / var(--tw-text-opacity));
+}
+
 .underline {
   text-decoration-line: underline;
 }

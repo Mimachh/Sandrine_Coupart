@@ -5,12 +5,16 @@ namespace App\Http\Livewire\Admin;
 use App\Models\Regime;
 use Livewire\Component;
 use Illuminate\Support\Facades\Validator;
+use Livewire\WithPagination;
 
 class Regimes extends Component
 {
+    use WithPagination;
+    
     public $regimes;
     public $state = [];
     public $updateMode = false;
+    public $createMode = false;
 
     public function mount()
     {
@@ -37,6 +41,7 @@ class Regimes extends Component
 
              
         $this->reset('state');
+        $this->createMode = false;
         $this->regimes = Regime::all();
     }
 
@@ -50,6 +55,11 @@ class Regimes extends Component
             'id' => $regime->id,
             'type' => $regime->type,
         ];
+    }
+
+    public function openForm()
+    {
+        $this->createMode = true;
     }
 
     public function cancel()

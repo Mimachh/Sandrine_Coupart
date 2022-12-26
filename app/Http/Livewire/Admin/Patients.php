@@ -7,9 +7,12 @@ use App\Models\Regime;
 use Livewire\Component;
 use App\Models\Allergene;
 use Illuminate\Support\Facades\Validator;
+use Livewire\WithPagination;
 
 class Patients extends Component
 {
+    use WithPagination;
+    
     public $patients;
     public $state = [];
 

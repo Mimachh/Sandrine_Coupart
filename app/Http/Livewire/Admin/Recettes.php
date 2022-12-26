@@ -7,9 +7,12 @@ use App\Models\Recette;
 use Livewire\Component;
 use App\Models\Allergene;
 use Illuminate\Support\Facades\Validator;
+use Livewire\WithPagination;
 
 class Recettes extends Component
 {
+    use WithPagination;
+    
     public $recettes;
     public $allergenes;
     public $allergenes_id;
@@ -17,6 +20,7 @@ class Recettes extends Component
     public $state = [];
 
     public $updateMode = false;
+    public $createMode = false;
 
     public function mount()
     {
@@ -71,6 +75,7 @@ class Recettes extends Component
         $this->emit('flash', 'Une nouvelle recette à bien été crée ! ', 'success');
         
         $this->reset('state');
+        $this->createMode = false;
         $this->recettes = Recette::all();
     }
 
@@ -94,9 +99,21 @@ class Recettes extends Component
         ];
     }
 
+    public function openForm()
+    {
+        $this->createMode = true;
+    }
+
     public function cancel()
     {
-        $this->updateMode = false;
+        if($this->updateMode) {
+            $this->updateMode = false;
+        }
+        if($this->createMode) {
+            $this->createMode = false;
+        }
+        
+
         $this->reset('state');
     }
 

@@ -13,6 +13,7 @@ class Allergenes extends Component
     public $state = [];
 
     public $updateMode = false;
+    public $createMode = false;
 
     use WithPagination;
 
@@ -38,8 +39,8 @@ class Allergenes extends Component
         Allergene::create($this->state);
 
         $this->emit('flash', 'Un nouvel allergene à bien été crée ! ', 'success');
-             
         $this->reset('state');
+        $this->createMode = false;
         $this->allergenes = Allergene::all();
     }
 
@@ -56,9 +57,21 @@ class Allergenes extends Component
 
     }
 
+    public function openForm()
+    {
+        $this->createMode = true;
+    }
+
     public function cancel()
     {
-        $this->updateMode = false;
+        if($this->updateMode) {
+            $this->updateMode = false;
+        }
+        if($this->createMode) {
+            $this->createMode = false;
+        }
+        
+
         $this->reset('state');
     }
 

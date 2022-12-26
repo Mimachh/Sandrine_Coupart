@@ -9,13 +9,17 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Livewire\WithPagination;
 
 class Users extends Component
 {
+    use WithPagination;
+    
     public $users;
     public $roles;
     public $state = [];
     public $updateMode = false;
+    public $createMode = false;
 
     public function mount()
     {
@@ -57,6 +61,7 @@ class Users extends Component
              
         $this->emit('flash', 'Nouvel utilisateur crée ! ', 'success');
         $this->reset('state');
+        $this->createMode = false;
         $this->users = User::all();
     }
 
@@ -75,9 +80,21 @@ class Users extends Component
         ];
     }
 
+    public function openForm()
+    {
+        $this->createMode = true;
+    }
+
     public function cancel()
     {
-        $this->updateMode = false;
+        if($this->updateMode) {
+            $this->updateMode = false;
+        }
+        if($this->createMode) {
+            $this->createMode = false;
+        }
+        
+
         $this->reset('state');
     }
 
