@@ -10,7 +10,7 @@ use Livewire\WithPagination;
 class Regimes extends Component
 {
     use WithPagination;
-    
+
     public $regimes;
     public $state = [];
     public $updateMode = false;
@@ -64,7 +64,14 @@ class Regimes extends Component
 
     public function cancel()
     {
-        $this->updateMode = false;
+        if($this->updateMode) {
+            $this->updateMode = false;
+        }
+        if($this->createMode) {
+            $this->createMode = false;
+        }
+        
+
         $this->reset('state');
     }
 

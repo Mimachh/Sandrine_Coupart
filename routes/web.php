@@ -34,7 +34,7 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 });
 
 
-
+Route::view('contact', 'contact.index');
 
 
 

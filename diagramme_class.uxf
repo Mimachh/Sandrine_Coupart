@@ -118,7 +118,7 @@ user_id: FOREIGN KEY -&gt;table users
 regime_id: FOREIGN KEY -&gt; table regimes
 
 
-</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>182</x><y>371</y><w>154</w><h>112</h></coordinates><panel_attributes>lt=-
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>182</x><y>371</y><w>147</w><h>112</h></coordinates><panel_attributes>lt=-
 m1=1
 m2=0..n
 has &gt;
