@@ -81,5 +81,16 @@ class DatabaseSeeder extends Seeder
             ['id'=>'2', 'allergene_id' => '3', 'user_id' => '2'],
         ]);
 
+        DB::table('subjects')->insert([
+ 
+            ['id'=>'1', 'name' => 'Réclamation'],
+            ['id'=>'2', 'name' => 'Prendre un RDV'],
+        ]);
+
+        DB::table('contacts')->insert([
+ 
+            ['id'=>'1', 'name' => 'LOR', 'last_name' => 'EmIpsum', 'email' => 'lorem@gmail.com', 'phone' => '0243434343', 'subject_id' => '2', 'message' => "Bonjour, j'aimerai avoir un rendez-vous dans la semaine s'il vous plait"],
+        ]);
+
     }
 }

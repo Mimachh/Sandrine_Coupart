@@ -59,27 +59,28 @@
       <div class="w-full px-4 lg:w-1/2 xl:w-5/12">
       <h4 class="text-dark mb-1 text-md font-bold">Envoyer un message </h4>
         <div class="relative rounded-lg bg-white p-8 shadow-lg sm:p-12">
-          <form>
+          <form method="POST" action="{{ route('contact.store') }}">
+            @csrf
             <div class="mb-6">
-              <input type="text" placeholder="Votre nom" class=" focus:border-primary w-full rounded border py-3 px-4 text-base outline-none focus-visible:shadow-none"/>
+              <input name="name" id="name" type="text" placeholder="Votre nom" class=" focus:border-primary w-full rounded border py-3 px-4 text-base outline-none focus-visible:shadow-none"/>
             </div>
             <div class="mb-6">
-              <input type="text" placeholder="Votre prénom" class=" focus:border-primary w-full rounded border py-3 px-4 text-base outline-none focus-visible:shadow-none"/>
+              <input name="last_name" id="last_name" type="text" placeholder="Votre prénom" class=" focus:border-primary w-full rounded border py-3 px-4 text-base outline-none focus-visible:shadow-none"/>
             </div>
             <div class="mb-6">
-              <input type="email" placeholder="Votre mail" class="  focus:border-primary w-full rounded border py-3 px-4 text-base outline-none focus-visible:shadow-none"/>
+              <input name="email" id="email" type="email" placeholder="Votre mail" class="  focus:border-primary w-full rounded border py-3 px-4 text-base outline-none focus-visible:shadow-none"/>
             </div>
             <div class="mb-6">
-              <input type="text" placeholder="Votre téléphone" class="  focus:border-primary w-full rounded border py-3 px-4 text-base outline-none focus-visible:shadow-none"/>
+              <input name="phone" id="phone" type="text" placeholder="Votre téléphone" class="  focus:border-primary w-full rounded border py-3 px-4 text-base outline-none focus-visible:shadow-none"/>
             </div>
             <div class="mb-6">
-              <select class="focus:border-primary w-full rounded border py-3 px-4 text-base outline-none focus-visible:shadow-none">
+              <select id="subject_id" name="subject_id" class="focus:border-primary w-full rounded border py-3 px-4 text-base outline-none focus-visible:shadow-none">
                 <option value="">- Choisir le sujet -</option>
-                <option value="">Test2</option>
+                <option value="1">Test2</option>
               </select>
             </div>
             <div class="mb-6">
-              <textarea rows="6" placeholder="Votre message" class="text-body-color border-[f0f0f0] focus:border-primary w-full resize-none rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none"></textarea>
+              <textarea id="message" name="message" rows="6" placeholder="Votre message" class="text-body-color border-[f0f0f0] focus:border-primary w-full resize-none rounded border py-3 px-[14px] text-base outline-none focus-visible:shadow-none"></textarea>
             </div>
             <div>
               <x-jet-danger-button type="submit">

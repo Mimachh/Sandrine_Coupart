@@ -24,7 +24,7 @@ class ContactController extends Controller
      */
     public function create()
     {
-        //
+        return view('contact.create');
     }
 
     /**
@@ -35,7 +35,19 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        
+        $data = $request->validate([
+            'name' => 'required|max:60',
+            'last_name' => 'required|max:60',
+            'email' => 'required|max:255',
+            'phone' => 'required|max:10',
+            'subject_id' => 'required|min:1',
+            'message' => 'required|max:255',
+        ]);
+
+        $create = Contact::create($data);
+       
+        return redirect()->route('contact.confirmation');
     }
 
     /**
