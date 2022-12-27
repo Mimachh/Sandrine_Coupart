@@ -6,14 +6,18 @@ use App\Models\Regime;
 use App\Models\Recette;
 use Livewire\Component;
 use App\Models\Allergene;
-use Illuminate\Support\Facades\Validator;
 use Livewire\WithPagination;
+use Livewire\WithFileUploads;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class Recettes extends Component
 {
     use WithPagination;
+    use WithFileUploads;
     
     public $recettes;
+    public $photo;
     public $allergenes;
     public $allergenes_id;
     public $regimes;
@@ -39,6 +43,7 @@ class Recettes extends Component
 
     public function store()
     {
+
         $validator = Validator::make($this->state, [
             'title' => 'required|max:60',
             'description' => 'required|max:255',
@@ -48,6 +53,7 @@ class Recettes extends Component
             'ingredients' => 'required|max:255',
             'steps' => 'required|max:255',
             'patient_only' => 'nullable|boolean',
+            'photo' => 'nullable|image',
                 
         ],[  
             'title.required' => 'Un titre est requis !',
@@ -61,16 +67,46 @@ class Recettes extends Component
             'ingredients.max' => 'Les ingrédients ne doivent pas dépasser 255 caractères !',
             'steps.required' => 'Merci de renseigner des étapes !',
             'steps.max' => 'Les étapes ne doivent pas dépasser 255 caractères !',
+            'photo.image' => 'La photo n\'est pas au bon format !',
         ]
         )->validate();
 
-        $create = Recette::create($this->state);
+
+        /* USE FOR AVOID ERROR MESSAGE UNDIFINED ARRAY KEY */
+        if(isset($this->state['photo'])) {
+            $name_file = md5($this->state['photo'] . microtime()).'.'.$this->state['photo']->extension();
+            $this->state['photo']->storeAs('recettes_photos', $name_file);    
+        }
+        else {
+            $name_file = NULL;
+        }
+        if(! isset($this->state['patient_only'])) {
+            $this->state['patient_only'] = NULL; }
+
+        /* /USE FOR AVOID ERROR MESSAGE UNDIFINED ARRAY KEY */
+
+
+        $create = Recette::create([
+            'title' => $this->state['title'],
+            'description' => $this->state['description'],
+            'preparation' => $this->state['preparation'],
+            'rest' => $this->state['rest'],
+            'cooking' => $this->state['cooking'],
+            'ingredients' => $this->state['ingredients'],
+            'steps' => $this->state['steps'],
+            'patient_only' => $this->state['patient_only'],
+            'photo' => $name_file,
+        ]);
+
+
+        /* PIVOT TABLE */
         if(isset($this->state['allergenes_id'])){
             $create->allergenes()->sync($this->state['allergenes_id']);
         }
         if(isset($this->state['regimes_id'])){
             $create->regimes()->sync($this->state['regimes_id']);
         }
+        /* /PIVOT TABLE */
         
         $this->emit('flash', 'Une nouvelle recette à bien été crée ! ', 'success');
         
@@ -85,7 +121,6 @@ class Recettes extends Component
         $this->updateMode = true;
 
         $recette = Recette::find($id);
-        
         $this->state = [
             'id' => $recette->id,
             'title' => $recette->title,
@@ -97,6 +132,7 @@ class Recettes extends Component
             'steps' => $recette->steps,
             'patient_only' => $recette->patient_only,
         ];
+
     }
 
     public function openForm()
@@ -131,9 +167,25 @@ class Recettes extends Component
         ])->validate();
 
 
+        
+
         if ($this->state['id']) {
             $recette = Recette::find($this->state['id']);
 
+            /* Photo */
+                if(isset($this->state['photo']))
+                {
+                    
+                    Storage::delete('recettes_photos/'. $recette->photo);
+                    $name_file = md5($this->state['photo'] . microtime()).'.'.$this->state['photo']->extension();
+                    $this->state['photo']->storeAs('recettes_photos', $name_file);
+                }
+                else {
+                    $name_file = $recette->photo;
+                }
+            /* Fin photo */
+
+            /* DELETE PIVOT TABLE */
             $recette->allergenes()->detach();
             $recette->regimes()->detach();
 
@@ -146,14 +198,18 @@ class Recettes extends Component
                 'ingredients' => $this->state['ingredients'],
                 'steps' => $this->state['steps'],
                 'patient_only' => $this->state['patient_only'],
+                'photo' => $name_file,
             ]);
-            
+
+   
+            /* PIVOT TABLES */
             if(isset($this->state['allergenes_id'])){
                 $recette->allergenes()->sync($this->state['allergenes_id']);
             }
             if(isset($this->state['regimes_id'])){
                 $recette->regimes()->sync($this->state['regimes_id']);
             }
+            /* END PIVOT TABLES */
 
             $this->emit('flash', 'Recette bien mise à jour ! ', 'info');
 
@@ -166,8 +222,12 @@ class Recettes extends Component
     public function delete($id)
     {
         if($id){
+            $recette = Recette::where('id', $id)->first();
             Recette::where('id',$id)->delete();
+            Storage::delete('recettes_photos/'. $recette->photo);
+
             $this->emit('flash', 'La recette a été supprimée ! ', 'error');
+            
             $this->recettes = Recette::all();
         }
     }

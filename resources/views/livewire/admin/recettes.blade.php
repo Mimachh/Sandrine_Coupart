@@ -59,6 +59,13 @@
                             <textarea class="w-full shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="state.steps" id="steps"></textarea>
                             @error('steps') <small class="text-red-600 italic">{{ $message }}</small> @enderror
                         </div>
+
+                        <!-- Image -->
+                        <div class="w-full mb-3">
+                            <x-jet-label for="photo">Les étapes</x-jet-label>
+                            <x-jet-input type="file" class="w-full shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" wire:model="state.photo" id="photo"/>
+                            @error('photo') <small class="text-red-600 italic">{{ $message }}</small> @enderror
+                        </div>
                     </div>
 
                     <!-- CHECKBOXES GROUP -->

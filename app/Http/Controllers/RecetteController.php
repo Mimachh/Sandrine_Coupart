@@ -18,8 +18,6 @@ class RecetteController extends Controller
         $regime = $patient_id->regimes;
         $regime_patient = $patient_id->regimes->implode('id', ', ');
         
-       
-       
         $recettes = Recette::all();
 
        
@@ -55,7 +53,9 @@ class RecetteController extends Controller
      */
     public function show(Recette $recette)
     {
-        //
+        
+        
+        return view('recettes.show', compact('recette'));
     }
 
     /**

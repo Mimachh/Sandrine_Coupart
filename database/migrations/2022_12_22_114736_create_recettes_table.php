@@ -19,6 +19,7 @@ return new class extends Migration
             $table->text('description');
             $table->time('preparation');
             $table->time('rest');
+            $table->string('photo')->nullable();
             $table->time('cooking');
             $table->text('ingredients');
             $table->text('steps');

@@ -30,6 +30,7 @@ class Recette extends Model
         'ingredients',
         'steps',
         'patient_only',
+        'photo',
     ];
 
     public function created_date() 

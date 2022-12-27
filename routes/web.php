@@ -43,5 +43,7 @@ Route::view('confirmation', 'contact.confirmation')->name('contact.confirmation'
 
 
 
-Route::get('recettes/', [RecetteController::class, 'index'])->name('recettes.index');
+Route::get('/recettes', [RecetteController::class, 'index'])->name('recettes.index');
+Route::resource('/recettes', RecetteController::class)->except('index');
+
 
