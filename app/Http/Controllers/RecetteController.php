@@ -14,14 +14,12 @@ class RecetteController extends Controller
      */
     public function index()
     {   
-        $patient_id = auth()->user();
-        $regime = $patient_id->regimes;
-        $regime_patient = $patient_id->regimes->implode('id', ', ');
+       
         
         $recettes = Recette::all();
 
        
-        return view('recettes.index', ['recettes' => $recettes, 'patient_id' => $patient_id]);
+        return view('recettes.index', ['recettes' => $recettes]);
     }
 
     /**

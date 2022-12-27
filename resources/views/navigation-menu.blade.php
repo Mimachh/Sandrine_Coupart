@@ -19,7 +19,7 @@
                     </x-jet-nav-link>
                     @endauth
 
-                    <x-jet-nav-link href="">
+                    <x-jet-nav-link href="{{ route('recettes.index') }}">
                         {{ __('Les recettes') }}
                     </x-jet-nav-link>
 

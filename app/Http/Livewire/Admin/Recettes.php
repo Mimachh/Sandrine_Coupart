@@ -15,6 +15,7 @@ class Recettes extends Component
 {
     use WithPagination;
     use WithFileUploads;
+
     
     public $recettes, $photo, $allergenes, $allergenes_id, $regimes;
     
