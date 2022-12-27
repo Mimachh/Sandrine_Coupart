@@ -66,7 +66,7 @@
 
     @guest
         <div class="ml-4 grid grid-cols-1 gap-4 lg:grid-cols-3 sm:grid-cols-2">
-            @forelse($recettes as $recette)
+            @forelse($recettes->where('patient_only', !'1') as $recette)
                 <div class="w-full px-4 max-h-62 lg:px-0 my-5">
                     <div class="p-3 bg-white rounded shadow-md hover:shadow-2xl">
                         <div>
