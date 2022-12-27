@@ -16,11 +16,8 @@ class Recettes extends Component
     use WithPagination;
     use WithFileUploads;
     
-    public $recettes;
-    public $photo;
-    public $allergenes;
-    public $allergenes_id;
-    public $regimes;
+    public $recettes, $photo, $allergenes, $allergenes_id, $regimes;
+    
     public $state = [];
 
     public $updateMode = false;
@@ -33,13 +30,16 @@ class Recettes extends Component
         $this->allergenes = Allergene::all();
     }
 
-    private function resetInputFields(){
+    private function resetInputFields()
+    {
         $this->reset('state');
     }
+
     protected $rules = [
         'allergenes_id.*' => 'nullable|boolean',
         'regimes_id.*' => 'nullable|boolean',
     ];
+
 
     public function store()
     {
@@ -53,7 +53,7 @@ class Recettes extends Component
             'ingredients' => 'required|max:255',
             'steps' => 'required|max:255',
             'patient_only' => 'nullable|boolean',
-            'photo' => 'nullable|image',
+            'photo' => 'nullable|image|max:2048',
                 
         ],[  
             'title.required' => 'Un titre est requis !',
@@ -68,20 +68,21 @@ class Recettes extends Component
             'steps.required' => 'Merci de renseigner des étapes !',
             'steps.max' => 'Les étapes ne doivent pas dépasser 255 caractères !',
             'photo.image' => 'La photo n\'est pas au bon format !',
+            'photo.max' => 'La photo est trop lourde !',
         ]
         )->validate();
 
 
         /* USE FOR AVOID ERROR MESSAGE UNDIFINED ARRAY KEY */
-        if(isset($this->state['photo'])) {
-            $name_file = md5($this->state['photo'] . microtime()).'.'.$this->state['photo']->extension();
-            $this->state['photo']->storeAs('recettes_photos', $name_file);    
-        }
-        else {
-            $name_file = NULL;
-        }
-        if(! isset($this->state['patient_only'])) {
-            $this->state['patient_only'] = NULL; }
+            if(isset($this->state['photo'])) {
+                $name_file = md5($this->state['photo'] . microtime()).'.'.$this->state['photo']->extension();
+                $this->state['photo']->storeAs('recettes_photos', $name_file);    
+            }
+            else {
+                $name_file = NULL;
+            }
+            if(! isset($this->state['patient_only'])) {
+                $this->state['patient_only'] = NULL; }
 
         /* /USE FOR AVOID ERROR MESSAGE UNDIFINED ARRAY KEY */
 
@@ -100,12 +101,12 @@ class Recettes extends Component
 
 
         /* PIVOT TABLE */
-        if(isset($this->state['allergenes_id'])){
-            $create->allergenes()->sync($this->state['allergenes_id']);
-        }
-        if(isset($this->state['regimes_id'])){
-            $create->regimes()->sync($this->state['regimes_id']);
-        }
+            if(isset($this->state['allergenes_id'])){
+                $create->allergenes()->sync($this->state['allergenes_id']);
+            }
+            if(isset($this->state['regimes_id'])){
+                $create->regimes()->sync($this->state['regimes_id']);
+            }
         /* /PIVOT TABLE */
         
         $this->emit('flash', 'Une nouvelle recette à bien été crée ! ', 'success');
@@ -156,15 +157,30 @@ class Recettes extends Component
     public function update()
     {
         $validator = Validator::make($this->state, [
-            'title' => 'nullable',
-            'description' => 'nullable|max:255',
-            'preparation' => 'nullable|string',
-            'rest' => 'nullable|string',
-            'cooking' => 'nullable|string',
-            'ingredients' => 'nullable|max:255',
-            'steps' => 'nullable|max:255',
+            'title' => 'required|max:60',
+            'description' => 'required|max:255',
+            'preparation' => 'required|string',
+            'rest' => 'required|string',
+            'cooking' => 'required|string',
+            'ingredients' => 'required|max:255',
+            'steps' => 'required|max:255',
             'patient_only' => 'nullable|boolean',
-        ])->validate();
+            'photo' => 'nullable|image|max:2048',
+        ], [  
+            'title.required' => 'Un titre est requis !',
+            'title.max' => 'Le titre ne doit pas dépasser 60 caractères !',
+            'description.required' => 'Une description est obligatoire !',
+            'description.max' => 'La description ne doit pas dépasser 255 caractères !',
+            'preparation.required' => 'Un temps de préparation est obligatoire !',
+            'rest.required' => 'Le temps de repos est obligatoire !',
+            'cooking.required' => 'Le temps de cuisson est obligatoire !',
+            'ingredients.required' => 'Merci de renseigner des ingrédients !',
+            'ingredients.max' => 'Les ingrédients ne doivent pas dépasser 255 caractères !',
+            'steps.required' => 'Merci de renseigner des étapes !',
+            'steps.max' => 'Les étapes ne doivent pas dépasser 255 caractères !',
+            'photo.image' => 'La photo n\'est pas au bon format !',
+            'photo.max' => 'La photo est trop lourde !',
+        ] )->validate();
 
 
         
@@ -227,7 +243,7 @@ class Recettes extends Component
             Storage::delete('recettes_photos/'. $recette->photo);
 
             $this->emit('flash', 'La recette a été supprimée ! ', 'error');
-            
+
             $this->recettes = Recette::all();
         }
     }
