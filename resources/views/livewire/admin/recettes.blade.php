@@ -1,5 +1,5 @@
 
-<div class="container flex justify-center ml-10 mr-10">
+<div class="container flex justify-center ml-64 mr-32">
     <div class="flex flex-col">
         <div class="w-full">
                 @if($updateMode || $createMode)
@@ -160,9 +160,9 @@
                                 <th class="bg-gray-200"  scope="row">{{ $recette->id }}</th>
                                 <td>{{ $recette->title}}</td>
                                 <td>{{ $recette->description }}</td>
-                                <td>{{ $recette->preparation }}</td>
-                                <td>{{ $recette->rest }}</td>
-                                <td>{{ $recette->cooking }}</td>
+                                <td>{{ $recette->preparationTime() }}</td>
+                                <td>{{ $recette->restTime() }}</td>
+                                <td>{{ $recette->cookingTime() }}</td>
                                 <td>{{ $recette->ingredients }}</td>
                                 <td>{{ $recette->steps }}</td>
                                 <td>

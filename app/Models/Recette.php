@@ -42,6 +42,24 @@ class Recette extends Model
     public function updated_date() 
     {
         $date = $this->updated_at;
-        return "le ".date('d/m/y', strtotime($date)). " à ".date('H', strtotime($date))."h".date('m', strtotime($date));
+        return "le ".date('d/m/y', strtotime($date)). " à ".date('H', strtotime($date))."h".date('i', strtotime($date));
+    }
+
+    public function preparationTime() 
+    {
+        $date = $this->preparation;
+        return date('H', strtotime($date))."h".date('i', strtotime($date)). "min";
+    }
+
+    public function restTime() 
+    {
+        $date = $this->rest;
+        return date('H', strtotime($date))."h".date('i', strtotime($date)). "min";
+    }
+
+    public function cookingTime() 
+    {
+        $date = $this->cooking;
+        return date('H', strtotime($date))."h".date('i', strtotime($date)). "min";
     }
 }
