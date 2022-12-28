@@ -1,6 +1,5 @@
 <x-app-layout>
-    <!-- ====== Contact Section Start -->
-<section class="relative z-10 overflow-hidden bg-white py-20 lg:py-[120px] md:mx-32">
+<section class="mb-4 pb-4 bg-white overflow-hidden lg:py-[120px] md:mx-32">
   <div class="container mx-auto px-10">
     <div class="-mx-4 flex flex-wrap lg:justify-between">
       <div class="w-full px-4 lg:w-1/2 xl:w-6/12">
@@ -107,6 +106,5 @@
     </div>
   </div>
 </section>
-<!-- ====== Contact Section End -->
 
 </x-app-layout>

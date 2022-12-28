@@ -96,9 +96,10 @@
         </div>
     </div>
 
-    @auth
+
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
+    @auth
         <div class="pt-2 pb-3 space-y-1">
             <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                 {{ __('Dashboard') }}
@@ -143,6 +144,14 @@
                 </form>
             </div>
         </div>
-    </div>
     @endauth
+    
+    @guest
+        <div class="pt-2 pb-3 space-y-1">
+            <x-jet-responsive-nav-link href="{{ route('recettes.index') }}" :active="request()->routeIs('recettes.index')">
+                {{ __('Liste des recettes') }}
+            </x-jet-responsive-nav-link>
+        </div>
+    @endguest
+    </div>
 </nav>

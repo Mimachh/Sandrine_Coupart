@@ -8,6 +8,7 @@ use Livewire\Component;
 use App\Models\Allergene;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
+use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
@@ -77,7 +78,9 @@ class Recettes extends Component
         /* USE FOR AVOID ERROR MESSAGE UNDIFINED ARRAY KEY */
             if(isset($this->state['photo'])) {
                 $name_file = md5($this->state['photo'] . microtime()).'.'.$this->state['photo']->extension();
-                $this->state['photo']->storeAs('recettes_photos', $name_file);    
+                $this->state['photo']->storeAs('recettes_photos', $name_file);
+                $img = Image::make(public_path("/storage/recettes_photos/{$name_file}"))->fit(1200, 1200);
+                $img->save();    
             }
             else {
                 $name_file = NULL;
@@ -196,6 +199,8 @@ class Recettes extends Component
                     Storage::delete('recettes_photos/'. $recette->photo);
                     $name_file = md5($this->state['photo'] . microtime()).'.'.$this->state['photo']->extension();
                     $this->state['photo']->storeAs('recettes_photos', $name_file);
+                    $img = Image::make(public_path("/storage/recettes_photos/{$name_file}"))->fit(1200, 1200);
+                    $img->save();
                 }
                 else {
                     $name_file = $recette->photo;

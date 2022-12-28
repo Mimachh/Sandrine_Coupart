@@ -10,7 +10,7 @@
         <div class="ml-4 grid grid-cols-1 gap-4 lg:grid-cols-3 sm:grid-cols-2">
             @forelse($regime->recettes as $recette)
                 <div class="w-full px-4 max-h-62 lg:px-0">
-                    <div class="p-3 bg-white rounded shadow-md hover:shadow-2xl">
+                    <div class="p-3 bg-white rounded shadow-md hover:shadow-2xl hover:shadow-white">
                         <div class="">
                             <div class="rounded aspect-w-1 aspect-h-1  overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                                 @if(isset($recette->photo))
@@ -68,7 +68,7 @@
         <div class="ml-4 grid grid-cols-1 gap-4 lg:grid-cols-3 sm:grid-cols-2">
             @forelse($recettes->where('patient_only', !'1') as $recette)
                 <div class="w-full px-4 max-h-62 lg:px-0 my-5">
-                    <div class="p-3 bg-white rounded shadow-md hover:shadow-2xl">
+                    <div class="p-3 bg-white rounded shadow-md hover:shadow-2xl hover:shadow-white">
                         <div>
                             <div class="rounded aspect-w-1 aspect-h-1  overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                                 @if(isset($recette->photo))
