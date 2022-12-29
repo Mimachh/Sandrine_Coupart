@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 py-2">
+<nav x-data="{ open: false }" class="bg-white border-b border-gray-100 py-3">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -19,11 +19,11 @@
                     </x-jet-nav-link>
                     @endauth
 
-                    <x-jet-nav-link href="{{ route('recettes.index') }}">
+                    <x-jet-nav-link href="{{ route('recettes.index') }}" :active="request()->routeIs('recettes.index')">
                         {{ __('Les recettes') }}
                     </x-jet-nav-link>
 
-                    <x-jet-nav-link href="{{ route('contact.create') }}">
+                    <x-jet-nav-link href="{{ route('contact.create') }}" :active="request()->routeIs('contact.create')">
                         {{ __('Nous contacter') }}
                     </x-jet-nav-link>
                 </div>

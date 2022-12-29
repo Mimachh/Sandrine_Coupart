@@ -21,11 +21,15 @@ Route::get('/', function () {
 })->name('/');
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
+    
+    /* Dashboard for Admin */
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
 
     Route::middleware(['role:Admin'])->prefix('admin/')->group(function () {
+
+        /* Old route and field i can delete */
         Route::view('recettes', 'admin.recettes');
         Route::view('allergenes', 'admin.allergenes');
         Route::view('regimes', 'admin.regimes');
@@ -35,14 +39,12 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 });
 
 
-
-
 Route::resource('contact', ContactController::class)->except('store');
 Route::post('contact/store', [ContactController::class, 'store'])->name('contact.store');
 Route::view('confirmation', 'contact.confirmation')->name('contact.confirmation');
 
 
-
+/* View for guests or patients*/
 Route::get('/recettes', [RecetteController::class, 'index'])->name('recettes.index');
 Route::resource('/recettes', RecetteController::class)->except('index');
 

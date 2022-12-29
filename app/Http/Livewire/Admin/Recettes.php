@@ -2,10 +2,13 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\Models\User;
 use App\Models\Regime;
 use App\Models\Recette;
 use Livewire\Component;
 use App\Models\Allergene;
+use App\Notifications\NewRecetteCreated;
+use Illuminate\Notifications\Notifiable;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Intervention\Image\Facades\Image;
@@ -16,6 +19,7 @@ class Recettes extends Component
 {
     use WithPagination;
     use WithFileUploads;
+    use Notifiable;
 
     
     public $recettes, $photo, $allergenes, $allergenes_id, $regimes;
@@ -79,7 +83,7 @@ class Recettes extends Component
             if(isset($this->state['photo'])) {
                 $name_file = md5($this->state['photo'] . microtime()).'.'.$this->state['photo']->extension();
                 $this->state['photo']->storeAs('recettes_photos', $name_file);
-                $img = Image::make(public_path("/storage/recettes_photos/{$name_file}"))->fit(1200, 1200);
+                $img = Image::make(public_path("/storage/recettes_photos/{$name_file}"))->fit(1795, 1200);
                 $img->save();    
             }
             else {
@@ -112,6 +116,17 @@ class Recettes extends Component
                 $create->regimes()->sync($this->state['regimes_id']);
             }
         /* /PIVOT TABLE */
+
+        /* FIND IDS USER CONCERNED FOR SEND EMAIL*/
+        $users = User::whereHas('regimes', function($query) use($create) {
+            $query->whereIn('regime_id', $create->regimes->pluck('id'));
+        })->get();
+
+        foreach($users as $user){
+            $user->notify(new NewRecetteCreated($create));
+        }
+      
+
         
         $this->emit('flash', 'Une nouvelle recette à bien été crée ! ', 'success');
         
@@ -199,7 +214,7 @@ class Recettes extends Component
                     Storage::delete('recettes_photos/'. $recette->photo);
                     $name_file = md5($this->state['photo'] . microtime()).'.'.$this->state['photo']->extension();
                     $this->state['photo']->storeAs('recettes_photos', $name_file);
-                    $img = Image::make(public_path("/storage/recettes_photos/{$name_file}"))->fit(1200, 1200);
+                    $img = Image::make(public_path("/storage/recettes_photos/{$name_file}"))->fit(1795, 1200);
                     $img->save();
                 }
                 else {
