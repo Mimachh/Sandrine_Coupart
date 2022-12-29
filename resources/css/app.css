@@ -1,3 +1,13 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* LOGIN FORM */ 
+
+.bg-login {
+background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
+}
+
+.button-login {
+    background: linear-gradient( to right, #ee7724, #d8363a, #dd3675, #b44593 );
+}

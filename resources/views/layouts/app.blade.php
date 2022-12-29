@@ -47,5 +47,6 @@
         @stack('modals')
 
         @livewireScripts
+        <script src="./TW-ELEMENTS-PATH/dist/js/index.min.js"></script>
     </body>
 </html>
