@@ -1,5 +1,6 @@
 <x-app-layout>
-<section class="mb-4 pb-4 bg-white overflow-hidden lg:py-[120px] md:mx-32">
+  @livewire('button-back')
+<section class="mb-4 pb-4 bg-login text-white overflow-hidden lg:py-[120px] md:mx-32">
   <div class="container mx-auto px-10">
     <div class="-mx-4 flex flex-wrap lg:justify-between">
       <div class="w-full px-4 lg:w-1/2 xl:w-6/12">
@@ -80,7 +81,9 @@
             <div class="mb-6">
               <select id="subject_id" name="subject_id" class="focus:border-primary w-full rounded border py-3 px-4 text-base outline-none focus-visible:shadow-none">
                 <option value="">- Choisir le sujet * -</option>
-                <option value="1">Test2</option>
+                @foreach($subjects as $subject)
+                <option value="{{ $subject->id }}">{{ $subject->name }}</option>
+                @endforeach
               </select>
               @error('subject_id') <small class="text-red-600 italic"> {{ $errors->first('subject_id') }}</small>@enderror
             </div>

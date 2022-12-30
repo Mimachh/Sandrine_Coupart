@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Contact;
+use App\Models\Subject;
 use Illuminate\Http\Request;
 
 class ContactController extends Controller
@@ -24,7 +25,8 @@ class ContactController extends Controller
      */
     public function create()
     {
-        return view('contact.create');
+        $subjects = Subject::all();
+        return view('contact.create', ['subjects' => $subjects]);
     }
 
     /**
@@ -35,6 +37,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
+        
         
         $data = $request->validate([
             'name' => 'required|max:60',

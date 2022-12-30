@@ -85,6 +85,8 @@ class DatabaseSeeder extends Seeder
  
             ['id'=>'1', 'name' => 'Réclamation'],
             ['id'=>'2', 'name' => 'Prendre un RDV'],
+            ['id'=>'3', 'name' => 'Devenir patient'],
+            ['id'=>'4', 'name' => 'Autre']
         ]);
 
         DB::table('contacts')->insert([
