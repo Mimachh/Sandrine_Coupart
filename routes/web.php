@@ -47,5 +47,5 @@ Route::view('confirmation', 'contact.confirmation')->name('contact.confirmation'
 /* View for guests or patients*/
 Route::get('/recettes', [RecetteController::class, 'index'])->name('recettes.index');
 Route::resource('/recettes', RecetteController::class)->except('index');
-Route::get('/guest', [RecetteGuestController::class, 'index']);
+Route::get('/guest', [RecetteGuestController::class, 'index'])->name('guest.index');
 

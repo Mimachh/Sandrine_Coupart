@@ -17,12 +17,18 @@
                     <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
-                    @endauth
+                    
 
                     <x-jet-nav-link href="{{ route('recettes.index') }}" :active="request()->routeIs('recettes.index')">
                         {{ __('Les recettes') }}
                     </x-jet-nav-link>
+                    @endauth
 
+                    @guest
+                    <x-jet-nav-link href="{{ route('guest.index') }}" :active="request()->routeIs('recettes.index')">
+                        {{ __('Les recettes') }}
+                    </x-jet-nav-link>
+                    @endguest
                     <x-jet-nav-link href="{{ route('contact.create') }}" :active="request()->routeIs('contact.create')">
                         {{ __('Nous contacter') }}
                     </x-jet-nav-link>
