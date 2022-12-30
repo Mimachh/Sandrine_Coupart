@@ -27,6 +27,11 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
         return view('dashboard');
     })->name('dashboard');
 
+    /* Receipts for Patients */
+    Route::get('/recettes', [RecetteController::class, 'index'])->name('recettes.index');
+    Route::resource('/recettes', RecetteController::class)->except('index');
+
+
     Route::middleware(['role:Admin'])->prefix('admin/')->group(function () {
 
         /* Old route and field i can delete */
@@ -44,8 +49,6 @@ Route::post('contact/store', [ContactController::class, 'store'])->name('contact
 Route::view('confirmation', 'contact.confirmation')->name('contact.confirmation');
 
 
-/* View for guests or patients*/
-Route::get('/recettes', [RecetteController::class, 'index'])->name('recettes.index');
-Route::resource('/recettes', RecetteController::class)->except('index');
+/* View for guests*/
 Route::get('/guest', [RecetteGuestController::class, 'index'])->name('guest.index');
 
