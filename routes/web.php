@@ -34,12 +34,6 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
 
     Route::middleware(['role:Admin'])->prefix('admin/')->group(function () {
 
-        /* Old route and field i can delete */
-        Route::view('recettes', 'admin.recettes');
-        Route::view('allergenes', 'admin.allergenes');
-        Route::view('regimes', 'admin.regimes');
-        Route::view('users', 'admin.users');
-        Route::view('patients', 'admin.patients');
     });
 });
 
