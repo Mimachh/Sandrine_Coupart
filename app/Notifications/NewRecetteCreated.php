@@ -3,17 +3,16 @@
 namespace App\Notifications;
 
 use Illuminate\Bus\Queueable;
+use App\Mail\NewReceipeCreated;
+use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
-use Illuminate\Notifications\Notification;
 
 class NewRecetteCreated extends Notification
 {
     use Queueable;
 
-    public $user_mail;
     public $create;
-    public $mail;
     /**
      * Create a new notification instance.
      *
@@ -44,10 +43,7 @@ class NewRecetteCreated extends Notification
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('Bonjour')
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return (new NewReceipeCreated($this->create, $notifiable))->to($notifiable->email);
     }
 
     /**
