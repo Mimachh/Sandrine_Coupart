@@ -12,7 +12,7 @@ class RecetteGuestController extends Controller
         //* FOR VISITORS */
         $receipts_visitors = Recette::where('patient_only', NULL)->paginate(3);
 
-        return view('recettes.index', [
+        return view('recettes.visitors', [
             'receipts_visitors' => $receipts_visitors,
         ]);
     }
