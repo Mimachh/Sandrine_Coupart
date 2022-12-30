@@ -222,10 +222,21 @@ class Recettes extends Component
                 }
             /* Fin photo */
 
-            /* DELETE PIVOT TABLE */
-            $recette->allergenes()->detach();
-            $recette->regimes()->detach();
+            /* Patient_Only*/
+                if($this->state['patient_only'])
+                {
+                    $patient_only = 1;
+                }
+                elseif($this->state['patient_only'] == false) 
+                {
+                    $patient_only = NULL;
+                }
+            /* / Patient_Only*/
 
+            /* DELETE PIVOT TABLE */
+                $recette->allergenes()->detach();
+                $recette->regimes()->detach();
+            /* /DELETE PIVOT TABLE */
             $recette->update([
                 'title' => $this->state['title'],
                 'description' => $this->state['description'],
@@ -234,7 +245,7 @@ class Recettes extends Component
                 'cooking' => $this->state['cooking'],
                 'ingredients' => $this->state['ingredients'],
                 'steps' => $this->state['steps'],
-                'patient_only' => $this->state['patient_only'],
+                'patient_only' => $patient_only,
                 'photo' => $name_file,
             ]);
 

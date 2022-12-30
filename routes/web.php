@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\RecetteController;
-
+use App\Http\Controllers\RecetteGuestController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,5 +47,5 @@ Route::view('confirmation', 'contact.confirmation')->name('contact.confirmation'
 /* View for guests or patients*/
 Route::get('/recettes', [RecetteController::class, 'index'])->name('recettes.index');
 Route::resource('/recettes', RecetteController::class)->except('index');
-
+Route::get('/guest', [RecetteGuestController::class, 'index']);
 

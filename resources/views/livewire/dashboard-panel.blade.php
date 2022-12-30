@@ -117,18 +117,29 @@
                 <div class="mt-10 space-y-5">
                     <h2 class="underline font-semibold text-lg">Vos derniers ajouts : </h2> 
                     <ul class="space-y-2">
+                        @if(isset($last_recette))
                         <li>
                             <h3>Dernière recette enregistrée : {{ $last_recette->title}} le {{ $last_recette->created_date()}}</h3>
                         </li>
+                        @endif
+
+                        @if(isset($last_user))
                         <li>
                             <h3>Dernier utilisateur enregistré : {{ $last_user->name}} {{ $last_user->last_name}} {{ $last_user->created_date()}}</h3>
                         </li>
+                        @endif
+
+                        @if(isset($last_allergene))
                         <li>
                             <h3>Dernier allergène enregistré : {{ $last_allergene->name}} {{ $last_allergene->created_date()}}</h3>
                         </li>
+                        @endif
+
+                        @if(isset($last_regime))
                         <li>
                             <h3>Dernier regime enregistré : {{ $last_regime->type}} {{ $last_regime->created_date()}}</h3>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -138,18 +149,29 @@
                 <div class="space-y-5">
                     <h2 class="underline font-semibold text-lg">Vos dernières mises à jour : </h2> 
                     <ul class="space-y-2">
+                        @if(isset($last_recette_updated))
                         <li>
                             <h3>Dernière recette mise à jour : {{ $last_recette_updated->title}} le {{ $last_recette_updated->updated_date()}}</h3>
                         </li>
+                        @endif
+
+                        @if(isset($last_user_updated))
                         <li>
                             <h3>Dernier utilisateur mis à jour : {{ $last_user_updated->name}} {{ $last_user_updated->last_name}} {{ $last_user_updated->updated_date()}}</h3>
                         </li>
+                        @endif
+
+                        @if(isset($last_allergene_updated))
                         <li>
                             <h3>Dernier allergène mis à jour : {{ $last_allergene_updated->name}} {{ $last_allergene_updated->updated_date() }}</h3>
                         </li>
+                        @endif
+
+                        @if(isset($last_regime_updated))
                         <li>
                             <h3>Dernier regime mis à jour : {{ $last_regime_updated->type}} {{ $last_regime_updated->updated_date()}}</h3>
                         </li>
+                        @endif
                     </ul>
                 </div>
             </div>
