@@ -1,3 +1,5 @@
+ /* Font */
+ @import url('https://fonts.googleapis.com/css2?family=Dongle&display=swap');  
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -194,4 +196,5 @@ background: linear-gradient(to right, #ee7724, #d8363a, #dd3675, #b44593);
       top: 45px
     }
   }
-  
+
+ 

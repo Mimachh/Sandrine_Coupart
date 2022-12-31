@@ -8,11 +8,11 @@
                         <div class="">
                             <div class="rounded aspect-w-1 aspect-h-1  overflow-hidden xl:aspect-w-7 xl:aspect-h-8">
                                 @if(isset($recette->photo))
-                                <img src="{{ asset('storage/recettes_photos/' . $recette->photo) }}" alt="Photo de la recette" 
-                                class="mb-2  mx-auto h-64  rounded-lg object-cover object-center group-hover:opacity-75">
-                                @else
-                                <img src="https://cdn.pixabay.com/photo/2018/02/25/07/15/food-3179853__340.jpg" alt="Butter photo"
-                                    class="object-fill w-full h-full rounded">
+                                    <img src="{{ asset('storage/recettes_photos/' . $recette->photo) }}" alt="Photo de la recette" 
+                                    class="mx-auto w-full h-full rounded  rounded-lg object-cover object-center group-hover:opacity-75">
+                                    @else
+                                    <img src="https://cdn.pixabay.com/photo/2018/02/25/07/15/food-3179853__340.jpg" alt="Butter photo"
+                                        class="object-fill w-full h-full rounded">
                                 @endif
                             </div>
                             <div class="flex-auto p-2 justify-evenly">

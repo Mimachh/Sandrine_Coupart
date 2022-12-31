@@ -9,11 +9,9 @@
 
         <!-- Fonts -->
         <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link rel="stylesheet" href="{{ asset('my_css/app.css') }}">
-        <script src="https://cdn.tailwindcss.com"></script>
         <script>
             [x-cloak] { display: none; }
         </script>
@@ -29,7 +27,7 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-red-700 shadow">
+                <header class="bg-login shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>

@@ -110,10 +110,10 @@ class Recettes extends Component
 
         /* PIVOT TABLE */
             if(isset($this->state['allergenes_id'])){
-                $create->allergenes()->sync($this->state['allergenes_id']);
+                $create->allergenes()->attach($this->state['allergenes_id']);
             }
             if(isset($this->state['regimes_id'])){
-                $create->regimes()->sync($this->state['regimes_id']);
+                $create->regimes()->attach($this->state['regimes_id']);
             }
         /* /PIVOT TABLE */
 

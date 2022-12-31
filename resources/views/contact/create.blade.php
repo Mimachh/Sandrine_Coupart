@@ -92,9 +92,7 @@
               @error('message') <small class="text-red-600 italic"> {{ $errors->first('message') }}</small>@enderror
             </div>
             <div>
-              <x-jet-danger-button type="submit">
-                Envoyer
-              </x-jet-danger-button>
+              <button class="button-perso rounded-lg py-2 px-6 shadow hover:shadow-lg" type="submit">Envoyer</button>
             </div>
           </form>
           <div>
