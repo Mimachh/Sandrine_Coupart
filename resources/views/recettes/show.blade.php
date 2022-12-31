@@ -19,12 +19,13 @@
                 <!-- Title / Description -->
                     <div class="space-y-6 text-center col-start-2 col-span-4  md:col-start-3 md:col-span-2">
                         <h2 class="text-gray-800 text-5xl font-test italic">{{ $recette->title }}</h2>
-                        <h3 class="text-gray-700 text-xl">{{ $recette->description }}</h3>
+                        <h3 class="text-gray-700 text-lg">{{ $recette->description }}</h3>
                     </div>
                 <!-- / Title / Description -->
             </div>
 
             <div class="text-center grid grid-cols-6 gap-4">
+                @if($recette->regimes->count() > 0)
                 <div class="bg-gray-300 rounded-full col-start-1 col-end-4 md:col-start-2 md:col-end-4">
                     <p class="underline italic">S'intégre au(x) régime(s) : </p>
                     <ul>
@@ -33,6 +34,8 @@
                         @endforeach
                     </ul>
                 </div>
+                @endif
+                @if($recette->allergenes->count() > 0)
                 <div class="bg-red-300 rounded-full col-end-8 col-start-4 col-span-4 md:col-start-4 md:col-end-6 md:col-span-2">
                     <p class="underline font-bold">Contient des allergènes :</p>
                     <ul>
@@ -41,6 +44,7 @@
                         @endforeach
                     </ul>
                 </div>
+                @endif
             </div>
 
             <div class="mt-4 md:px-6 text-center grid grid-cols-3 gap-4">
@@ -53,7 +57,7 @@
                         <p class="italic underline">Temps de repos :</p> 
                         <span class="shadow hover:shadow-xl hover:bg-red-400 bg-red-100 px-2 rounded-xl">{{ $recette->restTime() }}</span>
                     </div>
-                    <div class="bg-red-100 rounded-full">
+                    <div class="bg-red-100 rounded-full pb-2">
                         <p class="italic underline">Temps de cuisson :</p> 
                         <span class="shadow hover:shadow-xl hover:bg-gray-300 bg-gray-100 px-2 rounded-xl">{{ $recette->cookingTime() }}</span>
                     </div>

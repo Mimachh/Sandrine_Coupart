@@ -27,6 +27,9 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
         return view('dashboard');
     })->name('dashboard');
 
+    /* Messages receive by user */
+    Route::get('/messages_show/{contact}', [ContactController::class, 'show'])->name('contact.show');
+
     /* Receipts for Patients */
     Route::get('/recettes', [RecetteController::class, 'index'])->name('recettes.index');
     Route::resource('/recettes', RecetteController::class)->except('index')->except('show');

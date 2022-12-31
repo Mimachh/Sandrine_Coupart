@@ -20,7 +20,7 @@ class DashboardPanel extends Component
     public $last_regime_updated; 
     public $currentPage = 1;
     
-    public $pages = [ 1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6];
+    public $pages = [ 1=>1, 2=>2, 3=>3, 4=>4, 5=>5, 6=>6, 7=>7];
 
     public function goToPageWelcome()
     {
@@ -51,6 +51,11 @@ class DashboardPanel extends Component
     public function goToPageRegimes()
     {
         $this->currentPage = 6;
+    }
+
+    public function goToPageMessages()
+    {
+        $this->currentPage = 7;
     }
 
     public function mount()
