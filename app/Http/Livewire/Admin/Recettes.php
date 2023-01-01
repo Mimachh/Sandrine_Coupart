@@ -3,16 +3,17 @@
 namespace App\Http\Livewire\Admin;
 
 use App\Models\User;
+use App\Models\Rating;
 use App\Models\Regime;
 use App\Models\Recette;
 use Livewire\Component;
 use App\Models\Allergene;
-use App\Notifications\NewRecetteCreated;
-use Illuminate\Notifications\Notifiable;
 use Livewire\WithPagination;
 use Livewire\WithFileUploads;
 use Intervention\Image\Facades\Image;
 use Illuminate\Support\Facades\Storage;
+use App\Notifications\NewRecetteCreated;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Validator;
 
 class Recettes extends Component
@@ -249,6 +250,7 @@ class Recettes extends Component
                 'photo' => $name_file,
             ]);
 
+            
    
             /* PIVOT TABLES */
             if(isset($this->state['allergenes_id'])){

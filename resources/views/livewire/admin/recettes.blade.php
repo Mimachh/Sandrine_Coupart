@@ -77,6 +77,7 @@
                                 <div class="flex space-x-2 space-y-2 items-center" wire:key="allergene-field-{{$allergene->id}}">
                                     <div>
                                         <x-jet-input type="checkbox" wire:model.lazy="state.allergenes_id.{{ $index }}" value="{{ $allergene->id }}"/>
+                                        <input type="checkbox">
                                     </div>
                                     <div>
                                         <x-jet-label for="{{$allergene->name}}">{{ $allergene->name }}</x-jet-label>

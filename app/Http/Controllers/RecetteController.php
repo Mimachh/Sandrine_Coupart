@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Rating;
 use App\Models\Recette;
 use Illuminate\Http\Request;
 
@@ -61,9 +62,9 @@ class RecetteController extends Controller
      */
     public function show(Recette $recette)
     {
+        $avgRate = Rating::avg('rating');
         
-        
-        return view('recettes.show', compact('recette'));
+        return view('recettes.show', ['recette' => $recette, 'avgRate' => $avgRate]);
     }
 
     /**

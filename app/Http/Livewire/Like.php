@@ -7,6 +7,7 @@ use Livewire\Component;
 class Like extends Component
 {
     public $recette;
+    
     public function like()
     {
       if(auth()->check()) {

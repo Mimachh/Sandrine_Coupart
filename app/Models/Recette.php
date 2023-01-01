@@ -35,6 +35,11 @@ class Recette extends Model
         
     }
 
+    public function ratings()
+    {
+        return $this->hasMany('App\Models\Rating');
+    }
+
     protected $fillable = [
         'title',
         'description',

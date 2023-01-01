@@ -21,11 +21,6 @@ Route::get('/', function () {
 })->name('/');
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
-    
-    /* Dashboard for Admin */
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
 
     /* Messages receive by user */
     Route::get('/messages_show/{contact}', [ContactController::class, 'show'])->name('contact.show');
@@ -35,7 +30,10 @@ Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])-
     Route::resource('/recettes', RecetteController::class)->except('index')->except('show');
     Route::get('/my_dashboard', function() { return view('dashboard_patient'); })->name('dashboard.patient');
 
+    /* ADMIN ROUTES */
     Route::middleware(['role:Admin'])->prefix('admin/')->group(function () {
+
+        Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');
 
     });
 });
