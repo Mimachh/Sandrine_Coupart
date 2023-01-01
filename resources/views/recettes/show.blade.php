@@ -2,7 +2,7 @@
     @livewire('button-back')
 
     <div class="pb-12">
-        <div class="bg-white rounded-lg shadow-xl container mx-auto space-y-6 pb-10">
+        <div class="bg-perso rounded-lg shadow-xl container mx-auto space-y-6 pb-10">
             <div class="grid grid-cols-6 gap-4">
                 <!-- Photo -->
                     <div class="px-2 md:px-12 md:py-4 md:col-start-2 col-start-1 col-span-6 md:col-span-4 mt-4">
@@ -18,7 +18,12 @@
 
                 <!-- Title / Description -->
                     <div class="space-y-6 text-center col-start-2 col-span-4  md:col-start-3 md:col-span-2">
+                    <div class="bg-gray-100 rounded-full px-3 flex items-center align-center justify-between w-full min-w-0 ">
                         <h2 class="text-gray-800 text-5xl font-test italic">{{ $recette->title }}</h2>
+                        <div>
+                            <livewire:like :recette="$recette">
+                        </div>
+                    </div>
                         <h3 class="text-gray-700 text-lg">{{ $recette->description }}</h3>
                     </div>
                 <!-- / Title / Description -->

@@ -18,13 +18,14 @@
                     </x-jet-nav-link>
                     
 
-                    <x-jet-nav-link href="{{ route('recettes.index') }}" :active="request()->routeIs('recettes.index')">
+                    <x-jet-nav-link href="{{ route('recettes.index') }}" :active="request()->routeIs('recettes.index','recettes.show')">
                         {{ __('Les recettes') }}
                     </x-jet-nav-link>
+
                     @endauth
 
                     @guest
-                    <x-jet-nav-link href="{{ route('guest.index') }}" :active="request()->routeIs('recettes.index')">
+                    <x-jet-nav-link href="{{ route('guest.index') }}" :active="request()->routeIs('recettes.index', 'recettes.show')">
                         {{ __('Les recettes') }}
                     </x-jet-nav-link>
                     @endguest
@@ -65,6 +66,10 @@
 
                             <x-jet-dropdown-link href="{{ route('profile.show') }}">
                                 {{ __('Mon Profil') }}
+                            </x-jet-dropdown-link>
+
+                            <x-jet-dropdown-link href="">
+                                {{ __('Mes favoris') }}
                             </x-jet-dropdown-link>
 
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
@@ -132,6 +137,14 @@
                     {{ __('Mon Profil') }}
                 </x-jet-responsive-nav-link>
 
+                <x-jet-responsive-nav-link href="{{ route('recettes.index') }}" :active="request()->routeIs('recettes.index', 'recettes.show')">
+                    {{ __('Les recettes') }}
+                </x-jet-responsive-nav-link>
+
+                <x-jet-responsive-nav-link href="">
+                    {{ __('Mes favoris') }}
+                </x-jet-responsive-nav-link>
+
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">
                         {{ __('API Tokens') }}
@@ -156,6 +169,11 @@
             <x-jet-responsive-nav-link href="{{ route('recettes.index') }}" :active="request()->routeIs('recettes.index')">
                 {{ __('Liste des recettes') }}
             </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('recettes.index') }}" :active="request()->routeIs('recettes.index', 'recettes.show')">
+                {{ __('Les recettes') }}
+            </x-jet-responsive-nav-link>
+
         </div>
     @endguest
     </div>

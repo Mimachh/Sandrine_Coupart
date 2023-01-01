@@ -12,6 +12,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
         <link rel="stylesheet" href="{{ asset('my_css/app.css') }}">
+        <script src="https://cdn.tailwindcss.com"></script>
         <script>
             [x-cloak] { display: none; }
         </script>
@@ -27,7 +28,7 @@
 
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-login shadow">
+                <header class="bg-perso shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>

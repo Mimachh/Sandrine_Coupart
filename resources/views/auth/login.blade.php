@@ -51,7 +51,7 @@
                         </form>
                     </div>
                     </div>
-                    <div class="bg-login lg:w-6/12 flex md:items-start lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none">
+                    <div class="bg-perso lg:w-6/12 flex md:items-start lg:rounded-r-lg rounded-b-lg lg:rounded-bl-none">
                     <div class="text-white px-4 py-6 md:p-12 md:mx-6">
                         <div class="ml-52 md:ml-36 md:mb-32">
                             <x-jet-authentication-card-logo />

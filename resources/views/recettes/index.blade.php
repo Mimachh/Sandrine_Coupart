@@ -26,6 +26,7 @@
                                     <div class="flex flex-wrap ">
                                         <div class="flex items-center justify-between w-full min-w-0 ">
                                             <h2 class="mr-auto text-lg cursor-pointer hover:text-gray-900 ">{{ $recette->title }}</h2>
+                                            <livewire:like :recette="$recette"> ({{ $recette->fav->count()}})
                                         </div>
                                         <div class="my-2">
                                             <p class="text-gray-700 text-md mb-4">
@@ -84,6 +85,7 @@
                                     <div class="flex flex-wrap ">
                                         <div class="flex items-center justify-between w-full min-w-0 ">
                                             <h2 class="mr-auto text-lg cursor-pointer hover:text-gray-900 ">{{ $recette->title }}</h2>
+                                            <livewire:like :recette="$recette">
                                         </div>
                                         <div class="my-2">
                                             <p class="text-gray-700 text-md mb-4">

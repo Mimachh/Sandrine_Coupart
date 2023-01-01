@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\Regime;
 use App\Models\Allergene;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,19 @@ class Recette extends Model
     public function regimes()
     {
         return $this->belongsToMany(Regime::class);
+    }
+
+    public function fav()
+    {
+        return $this->belongsToMany(User::class);
+    }
+    
+    public function liked()
+    {
+        if (auth()->check()) {
+            return auth()->user()->fav->contains('id', $this->id);      
+        }
+        
     }
 
     protected $fillable = [
@@ -62,4 +76,6 @@ class Recette extends Model
         $date = $this->cooking;
         return date('H', strtotime($date))."h".date('i', strtotime($date)). "min";
     }
+
+
 }
