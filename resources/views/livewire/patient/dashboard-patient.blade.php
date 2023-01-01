@@ -15,20 +15,7 @@
                 <button type="button"  wire:click="goToPageRate"><h2 class="ml-5 mt-5 font-semibold text-md md:text-lg  text-blue-800" >Mes notes</h2></button>
             @else
                 <button type="button" wire:click="goToPageRate" ><h2 class="ml-5 mt-5 font-semibold text-md md:text-lg  text-gray-800" >Mes notes</h2></button>
-            @endif
-                    
-                    
-            @if($currentPage === 3)
-                <button type="button" ><h2 class="ml-5 mt-5 font-semibold text-md md:text-lg  text-blue-800">Mes commentaires</h2></button>
-            @else
-                <button type="button" ><h2 class="ml-5 mt-5 font-semibold text-md md:text-lg  text-gray-800">Mes commentaires</h2></button>
-            @endif
-
-            @if($currentPage === 4)
-                <button type="button"><h2 class="ml-5 mt-5 font-semibold text-md md:text-lg  text-blue-800">Mes messages</h2></button>
-            @else
-                <button type="button"><h2 class="ml-5 mt-5 font-semibold text-md md:text-lg  text-gray-800">Mes messages</h2></button>
-            @endif              
+            @endif             
         </div>
 
 
@@ -85,7 +72,21 @@
             @endif
             
             @if($currentPage === 2)
-            coucou
+                @forelse($ratings as $rate)
+                <div class="bg-gray-200 my-4 rounded-lg shadow text-justify pb-4 pl-2">
+                    <h2 class="font-semibold my-4">Pour la recette : <a href="{{ route('recettes.show', $rate->recette->id) }}" class="text-lg italic text-blue-500 underline font-normal">{{ $rate->recette->title}}</a></h2>
+                    <div class="mb-4">
+                        <p class="text-gray-900 font-semibold">Votre commentaire :</p>
+                        <p class="italic">{{ $rate->comment}}</p>
+                    </div>
+                    <h4 class="font-semibold">Votre note : 
+                        @for($i = 0; $i < $rate->rating; $i++)
+                            <strong>⭐</strong> 
+                        @endfor
+                    </h4>
+                </div>
+                @empty
+                @endforelse
             @endif
         </div>
     </div>

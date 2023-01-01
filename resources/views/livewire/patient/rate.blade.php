@@ -60,13 +60,13 @@
             <div class="box-border flex flex-col flex-wrap justify-center -mx-4 text-indigo-900">
                 <div class="relative w-full mb-12 leading-6 text-left xl:flex-grow-0 xl:flex-shrink-0">
                     <h2 class="box-border mx-0 mt-0 font-sans text-4xl font-bold text-center text-indigo-900">
-                        Ratings
+                        Commentaires
                     </h2>
                 </div>
             </div>
             <div class="box-border flex grid flex-wrap justify-center gap-10 -mx-4 text-center text-indigo-900 lg:gap-16 lg:justify-start lg:text-left">
-                @forelse ($comments as $rating)
-                    <div class="flex col-span-1 align-items">
+                @forelse ($ratings as $rating)
+                    <div class="flex col-span-1 align-items border-b">
                         <div class="relative flex-shrink-0 text-center">
                             <h3 class="mb-2">{{ $rating->user->name }}</h3>
                             @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
@@ -79,21 +79,27 @@
                             <div class="box-border text-gray-600">
                               <small>Posté {{ $rating->created_date() }}</small>  
                             </div>
-                            <div class="box-border text-lg font-medium text-gray-600">
-                                {{ $rating->comment }}
-                            </div>
-                            <div class="box-border mt-5 text-lg font-semibold text-indigo-900 uppercase">
-                                Note : <strong>{{ $rating->rating }}</strong> ⭐
+                            <div class="box-border my-2 text-lg font-semibold text-indigo-900 uppercase">
+                                Note : 
+                                <strong>
+                                    @for($i = 0; $i < $rating->rating; $i++)
+                                    ⭐
+                                    @endfor
+                                </strong>
+                                
+                                @can('delete', $rating)
+                                <h1>coucou</h1>
+                                @endcan
+
                                 @auth
                                     @if(auth()->user()->id === $rating->user_id || auth()->user()->role->name === 'Admin' )                                       
-                                        - <a wire:click.prevent="delete({{ $rating->id }})" class="text-sm cursor-pointer">Delete</a>
+                                        - <a wire:click.prevent="delete({{ $rating->id }})" class="text-sm cursor-pointer">Supprimer</a>
                                     @endif
                                 @endauth
+                                
                             </div>
-                            <div class="box-border text-left text-gray-700" style="quotes: auto;">
-                                <a href="{{ '@' . $rating->user->username }}">
-                                    {{  $rating->user->name }}
-                                </a>
+                            <div class="box-border text-lg font-medium text-gray-600">
+                                {{ $rating->comment }}
                             </div>
                         </div>
                     </div>
@@ -101,12 +107,14 @@
                 <div class="flex col-span-1">
                     <div class="relative px-4 mb-16 leading-6 text-left">
                         <div class="box-border text-lg font-medium text-gray-600">
-                            No ratings
+                            Aucun commentaire
                         </div>
                     </div>
                 </div>
                 @endforelse
-
+            </div>
+            <div class="justify-between align-center mt-3">
+                {{ $ratings->links()}}
             </div>
     </section>
 </div>

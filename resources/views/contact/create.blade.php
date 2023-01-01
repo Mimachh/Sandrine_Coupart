@@ -1,6 +1,6 @@
 <x-app-layout>
   @livewire('button-back')
-<section class="mb-4 pb-4 bg-login text-white overflow-hidden lg:py-[120px] md:mx-32">
+<section class="mb-4 pb-4 bg-perso text-white overflow-hidden lg:py-[120px] md:mx-32">
   <div class="container mx-auto px-10">
     <div class="-mx-4 flex flex-wrap lg:justify-between">
       <div class="w-full px-4 lg:w-1/2 xl:w-6/12">
@@ -58,7 +58,7 @@
       </div>
       <div class="w-full px-4 lg:w-1/2 xl:w-5/12">
       <h4 class="text-dark mb-1 text-md font-bold">Envoyer un message </h4>
-      <small class="text-red-600 italic"> Les champs marqué par * sont obligatoires</small>
+      <small class="text-white italic"> Les champs marqué par * sont obligatoires</small>
         <div class="relative rounded-lg bg-white p-8 shadow-lg sm:p-12">
           <form method="POST" action="{{ route('contact.store') }}">
             @csrf
@@ -107,5 +107,6 @@
     </div>
   </div>
 </section>
+
 
 </x-app-layout>

@@ -26,10 +26,12 @@ class RecetteController extends Controller
         /* FOR ADMIN */
         $receipts_admin = Recette::paginate(3);
         
+        $avgRate = Rating::avg('rating');
        
         return view('recettes.index', [
             'recettes' => $receipts_admin, 
             'receipts_patients' => $receipts_patients,
+            'avgRate' => $avgRate,
             ]);
     }
 

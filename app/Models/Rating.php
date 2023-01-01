@@ -22,7 +22,7 @@ class Rating extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function product()
+    public function recette()
     {
         return $this->belongsTo(Recette::class);
     }

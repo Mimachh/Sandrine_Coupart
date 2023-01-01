@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Patient;
 
 use App\Models\Rating;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Rate extends Component
 {
@@ -12,6 +13,8 @@ class Rate extends Component
     public $currentId;
     public $recette;
     public $hideForm;
+
+    use WithPagination;
 
     protected $rules = [
         'rating' => ['required', 'in:1,2,3,4,5'],
@@ -81,8 +84,8 @@ class Rate extends Component
 
     public function render()
     {
-        $comments = Rating::where('recette_id', $this->recette->id)->where('status', 1)->with('user')->get(); 
+        $ratings = Rating::where('recette_id', $this->recette->id)->where('status', 1)->with('user')->paginate(5); 
 
-        return view('livewire.patient.rate', compact('comments'));
+        return view('livewire.patient.rate', compact('ratings'));
     }
 }
