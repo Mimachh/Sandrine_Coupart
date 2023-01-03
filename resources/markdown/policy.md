@@ -1,3 +1,3 @@
 # Privacy Policy
 
-Edit this file to define the privacy policy for your application.
+Lorem ipsum dolor sit amet  con  laoreet et justo so..

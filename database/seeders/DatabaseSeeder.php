@@ -29,6 +29,15 @@ class DatabaseSeeder extends Seeder
             
         ]);
 
+        DB::table('statuts')->insert([
+ 
+            ['id'=>'1', 'name' => 'En ligne'],
+            ['id'=>'2', 'name' => 'Hors ligne'],
+            ['id'=>'3', 'name' => 'Archivé'],
+            ['id'=>'4', 'name' => 'En attente'],
+            
+        ]);
+
         DB::table('users')->insert([
  
             ['id'=>'1', 'name' => 'Admin', 'last_name' => 'Istrateur', 'email' => 'admin@gmail.com', 'password' => '$2y$10$lqRTDl7IEz3G8mMsOs9AMeuUMfPF77YAOF87XU2LmucpV3i6RpnYy', 'role_id' => '1'],
@@ -46,7 +55,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('recettes')->insert([
  
-            ['id'=>'1', 'title' => 'Crêpes', 'description' => 'Recette de crêpes sans lactose', 'preparation' => '00:00:30', 'rest' => '00:02:30', 'cooking' => '00:00:15', 'ingredients' => 'Oeufs, Sucre, Farine, Lait Végétal (Amande ou Riz), Sel, Beurre', 'steps' => '3'],
+            ['id'=>'1', 'title' => 'Crêpes', 'description' => 'Recette de crêpes sans lactose', 'preparation' => '00:00:30', 'rest' => '00:02:30', 'cooking' => '00:00:15', 'ingredients' => 'Oeufs, Sucre, Farine, Lait Végétal (Amande ou Riz), Sel, Beurre', 'steps' => '3', 'statut_id' => '1'],
             
         ]);
 
@@ -91,7 +100,7 @@ class DatabaseSeeder extends Seeder
 
         DB::table('contacts')->insert([
  
-            ['id'=>'1', 'name' => 'LOR', 'last_name' => 'EmIpsum', 'email' => 'lorem@gmail.com', 'phone' => '0243434343', 'subject_id' => '2', 'message' => "Bonjour, j'aimerai avoir un rendez-vous dans la semaine s'il vous plait"],
+            ['id'=>'1', 'name' => 'LOR', 'last_name' => 'EmIpsum', 'email' => 'lorem@gmail.com', 'phone' => '0243434343', 'subject_id' => '2', 'message' => "Bonjour, j'aimerai avoir un rendez-vous dans la semaine s'il vous plait", 'statut_id' => '4'],
         ]);
 
     }

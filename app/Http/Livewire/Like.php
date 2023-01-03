@@ -22,6 +22,10 @@ class Like extends Component
           'error'); 
         }
       }
+      else {
+        $this->emit('flash', 'Vous devez être connecté pour ajouter un favori', 
+          'error'); 
+      }
      
     }
 

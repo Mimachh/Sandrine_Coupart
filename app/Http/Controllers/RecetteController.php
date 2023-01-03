@@ -20,11 +20,11 @@ class RecetteController extends Controller
 
             $receipts_patients = Recette::whereHas('regimes', function($query) use($user) {
                 $query->whereIn('regime_id', $user->regimes->pluck('id'));
-            })->paginate(3);
+            })->where('statut_id', 1)->paginate(3);
 
         
         /* FOR ADMIN */
-        $receipts_admin = Recette::paginate(3);
+        $receipts_admin = Recette::where('statut_id', 1)->paginate(3);
         
         $avgRate = Rating::avg('rating');
        

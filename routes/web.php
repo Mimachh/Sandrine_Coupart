@@ -16,9 +16,6 @@ use App\Http\Controllers\RecetteGuestController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('/');
 
 Route::middleware(['auth:sanctum',config('jetstream.auth_session'),'verified'])->group(function () {
 
@@ -47,4 +44,8 @@ Route::view('confirmation', 'contact.confirmation')->name('contact.confirmation'
 /* View for receipts guests*/
 Route::get('/guest', [RecetteGuestController::class, 'index'])->name('guest.index');
 Route::get('/recettes/{recette}', [RecetteController::class, 'show'])->name('recettes.show');
+
+Route::get('/', function () { return view('welcome'); })->name('/');
+
+Route::get('/terms', function () { return view('terms'); })->name('terms');
 

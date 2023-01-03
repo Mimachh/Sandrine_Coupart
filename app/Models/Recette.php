@@ -26,6 +26,11 @@ class Recette extends Model
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function statut()
+    {
+        return $this->belongsTo('App\Models\Statut');
+    }
     
     public function liked()
     {
@@ -50,6 +55,7 @@ class Recette extends Model
         'steps',
         'patient_only',
         'photo',
+        'statut_id'
     ];
 
     public function created_date() 

@@ -11,6 +11,7 @@
                             <th class="px-6 py-4" scope="col">Email</th>
                             <th class="px-6 py-4" scope="col">Téléphone</th>
                             <th class="px-6 py-4" scope="col">Sujet</th>
+                            <th class="px-8 py-4" scope="col">Statut</th>
                             <th class="px-6 py-4" scope="col">Voir</th>
                         </tr>
                     </thead>
@@ -22,6 +23,9 @@
                                 <td>{{ $message->email }}</td>
                                 <td>{{ $message->phone }}</td>
                                 <td>{{ $message->subject->name }}</td>
+                                <td>
+                                   <button class="px-3 py-2 bg-red-600 rounded text-white" type="button" wire:click="archived( {{$message}} )">Archiver</button>
+                                </td>
                                 <td>
                                     <a href="{{ route('contact.show', $message )}}">Voir</a>
                                 </td>

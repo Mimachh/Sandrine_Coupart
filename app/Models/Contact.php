@@ -17,6 +17,7 @@ class Contact extends Model
         'phone',
         'subject_id',
         'message',
+        'statut_id'
     ];
 
     public function subject()
@@ -25,13 +26,4 @@ class Contact extends Model
     }
 
 
-    public function status()
-    {
-        if($this->status === 1){
-            return 'Non Lu';
-        }
-        if($this->status === 0){
-            return 'Lu';
-        }
-    }
 }

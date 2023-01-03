@@ -114,6 +114,15 @@
                             </div>
                         </div>
 
+                        <div class="mb-3">
+                            <x-jet-label class="underline font-semibold" for="statut_id">Statut</x-jet-label>
+                            <select class="px-3 py-2 rounded border " name="statut" id="statut" wire:model.defer='state.statut_id'>
+                                <option value=""> -- </option>
+                                @foreach($statuts as $statut)
+                                    <option value="{{ $statut->id}}">{{ $statut->name}}</option>
+                                @endforeach
+                            </select>
+                        </div>
                     </div>
 
                     <!-- Buttons -->
@@ -152,6 +161,7 @@
                             <th class="px-4 py-4" scope="col">Type de régime</th>
                             <th class="px-4 py-4" scope="col">Les allergènes</th>
                             <th class="px-4 py-4" scope="col">Visible par ?</th>
+                            <th class="px-4 py-4" scope="col">Statut</th>
                             <th class="px-4 py-4" scope="col"> -- </th>
                         </tr>
                     </thead>
@@ -185,6 +195,9 @@
                                     @else
                                         Tous
                                     @endif
+                                </td>
+                                <td>
+                                    {{ $recette->statut->name  }}
                                 </td>
                                 <td class="px-6 py-4">
                                     <button wire:click.prevent="edit({{ $recette->id }})" type="button" class="px-4 py-1 text-sm text-blue-600 bg-blue-200 rounded-full">Modifier</button>

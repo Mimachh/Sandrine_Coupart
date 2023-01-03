@@ -24,6 +24,7 @@ return new class extends Migration
             $table->text('ingredients');
             $table->text('steps');
             $table->boolean('patient_only')->nullable();
+            $table->foreignId('statut_id')->constrained()->default(1);
             $table->timestamps();
         });
     }

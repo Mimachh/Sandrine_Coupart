@@ -102,6 +102,14 @@
                 </div>
             </div>
             @endauth
+
+            @guest
+            <div class="sm:flex hidden">
+                <x-jet-nav-link href="{{ route('login') }}">
+                    {{ __('Se connecter') }}
+                </x-jet-nav-link>
+            </div>  
+            @endguest
             <!-- Hamburger -->
             <div class="-mr-2 flex items-center sm:hidden">
                 <button @click="open = ! open" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500 transition">
@@ -180,6 +188,10 @@
 
             <x-jet-responsive-nav-link href="{{ route('recettes.index') }}" :active="request()->routeIs('recettes.index', 'recettes.show')">
                 {{ __('Les recettes') }}
+            </x-jet-responsive-nav-link>
+
+            <x-jet-responsive-nav-link href="{{ route('login') }}">
+                {{ __('Se connecter') }}
             </x-jet-responsive-nav-link>
 
         </div>

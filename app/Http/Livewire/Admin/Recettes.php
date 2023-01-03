@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use App\Models\User;
 use App\Models\Rating;
 use App\Models\Regime;
+use App\Models\Statut;
 use App\Models\Recette;
 use Livewire\Component;
 use App\Models\Allergene;
@@ -23,7 +24,7 @@ class Recettes extends Component
     use Notifiable;
 
     
-    public $recettes, $photo, $allergenes, $allergenes_id, $regimes;
+    public $recettes, $photo, $allergenes, $allergenes_id, $regimes, $statuts;
     
     public $state = [];
 
@@ -35,6 +36,7 @@ class Recettes extends Component
         $this->recettes = Recette::all();
         $this->regimes = Regime::all();
         $this->allergenes = Allergene::all();
+        $this->statuts = Statut::all();
     }
 
     private function resetInputFields()
@@ -61,6 +63,7 @@ class Recettes extends Component
             'steps' => 'required|max:255',
             'patient_only' => 'nullable|boolean',
             'photo' => 'nullable|image|max:2048',
+            'statut_id' => 'required|integer',
                 
         ],[  
             'title.required' => 'Un titre est requis !',
@@ -76,6 +79,8 @@ class Recettes extends Component
             'steps.max' => 'Les étapes ne doivent pas dépasser 255 caractères !',
             'photo.image' => 'La photo n\'est pas au bon format !',
             'photo.max' => 'La photo est trop lourde !',
+            'statut.required' => 'Le statut est obligatoire !',
+            'statut.integer' => 'La valeur n\'est pas bonne !',
         ]
         )->validate();
 
@@ -106,6 +111,7 @@ class Recettes extends Component
             'steps' => $this->state['steps'],
             'patient_only' => $this->state['patient_only'],
             'photo' => $name_file,
+            'statut_id' => $this->state['statut_id'],
         ]);
 
 
@@ -152,6 +158,7 @@ class Recettes extends Component
             'ingredients' => $recette->ingredients,
             'steps' => $recette->steps,
             'patient_only' => $recette->patient_only,
+            'statut_id' => $recette->statut_id
         ];
 
     }
@@ -186,6 +193,7 @@ class Recettes extends Component
             'steps' => 'required|max:255',
             'patient_only' => 'nullable|boolean',
             'photo' => 'nullable|image|max:2048',
+            'statut_id' => 'required|integer',
         ], [  
             'title.required' => 'Un titre est requis !',
             'title.max' => 'Le titre ne doit pas dépasser 60 caractères !',
@@ -200,6 +208,8 @@ class Recettes extends Component
             'steps.max' => 'Les étapes ne doivent pas dépasser 255 caractères !',
             'photo.image' => 'La photo n\'est pas au bon format !',
             'photo.max' => 'La photo est trop lourde !',
+            'statut.integer' => 'La valeur n\'est pas bonne !',
+            'statut.required' => 'Le statut est obligatoire !',
         ] )->validate();
 
 
@@ -248,6 +258,7 @@ class Recettes extends Component
                 'steps' => $this->state['steps'],
                 'patient_only' => $patient_only,
                 'photo' => $name_file,
+                'statut_id' => $this->state['statut_id'],
             ]);
 
             
@@ -269,6 +280,7 @@ class Recettes extends Component
         }
     }
 
+
     public function delete($id)
     {
         if($id){
@@ -284,6 +296,6 @@ class Recettes extends Component
 
     public function render()
     {
-        return view('livewire.admin.recettes', ['recettesWithPagination' => Recette::paginate(5)]);
+        return view('livewire.admin.recettes', ['recettesWithPagination' => Recette::where('statut_id', '!=', 3)->paginate(5)]);
     }
 }

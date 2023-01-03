@@ -100,7 +100,7 @@
         </div>
         <div class="bg-white container rounded-lg mx-auto space-y-6 pb-10 my-4">
             <div class="px-5">
-                @livewire('patient.rate', ['recette' => $recette ])
+                @livewire('patient.rate', ['recette' => $recette ], key($recette->id))
             </div>
         </div>
     </div>
