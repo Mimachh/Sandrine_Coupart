@@ -31,7 +31,10 @@
                                         
                                         <!-- Rating -->
                                         <div>
-                                            <p class="text-sm">Note Moyenne : 
+                                            <p class="text-sm">
+                                                @if($recette->ratings->count() > 0)
+                                                Note Moyenne :
+                                                @endif
                                                 @for($i = 0; $i < $avgRate; $i++)
                                                <strong>⭐</strong> 
                                                 @endfor

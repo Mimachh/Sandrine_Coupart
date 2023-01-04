@@ -1,7 +1,7 @@
 <div>
 
         <!-- Sidebar -->
-        <div class="rounded-r-3xl fixed flex flex-col top-0 left-0 w-14 hover:w-52 md:w-52 bg-red-900 h-full text-white transition-all duration-300 border-none z-10 sidebar">
+        <div class="rounded-r-3xl fixed flex flex-col top-0 left-0 w-14 hover:w-52 md:w-52 bg-perso h-full text-white transition-all duration-300 border-none z-10 sidebar">
             <div class="overflow-y-auto overflow-x-hidden flex flex-col justify-between flex-grow">
                 <ul class="flex flex-col py-4 space-y-1 text-sm">
                     <li class="px-5 mb-4 hidden md:block">

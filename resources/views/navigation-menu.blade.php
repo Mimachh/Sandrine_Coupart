@@ -80,6 +80,12 @@
                             </x-jet-dropdown-link>
                             @endif
 
+                            @if(auth()->user()->role->name === "Admin")
+                            <x-jet-dropdown-link href="{{ route('dashboard') }}">
+                                {{ __('Dashboard') }}
+                            </x-jet-dropdown-link>
+                            @endif
+
                             @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                                 <x-jet-dropdown-link href="{{ route('api-tokens.index') }}">
                                     {{ __('API Tokens') }}
@@ -153,13 +159,23 @@
                     {{ __('Mon Profil') }}
                 </x-jet-responsive-nav-link>
 
+                
+                @if(auth()->user()->role->name === 'Patient')
+                <x-jet-responsive-nav-link href="{{ route('dashboard.patient') }}" :active="request()->routeIs('dashboard.patient')">
+                    {{ __('Mon espace patient') }}
+                </x-jet-responsive-nav-link>
+                @endif 
+                
+                @if(auth()->user()->role->name === 'Admin')
+                <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                    {{ __('Dashboard') }}
+                </x-jet-responsive-nav-link>
+                @endif
+
                 <x-jet-responsive-nav-link href="{{ route('recettes.index') }}" :active="request()->routeIs('recettes.index', 'recettes.show')">
                     {{ __('Les recettes') }}
                 </x-jet-responsive-nav-link>
 
-                <x-jet-responsive-nav-link href="{{ route('dashboard.patient') }}" :active="request()->routeIs('dashboard.patient')">
-                    {{ __('Mon espace patient') }}
-                </x-jet-responsive-nav-link>
 
                 @if (Laravel\Jetstream\Jetstream::hasApiFeatures())
                     <x-jet-responsive-nav-link href="{{ route('api-tokens.index') }}" :active="request()->routeIs('api-tokens.index')">

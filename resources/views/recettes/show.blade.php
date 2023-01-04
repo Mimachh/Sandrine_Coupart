@@ -14,6 +14,7 @@
                                 class="shadow-xl object-fill w-full h-full rounded">
                         @endif
 
+                        @if($recette->ratings->count() > 0)
                         <div class="flex justify-center items-center">
                             <div><h3 class="font-semibold px-2">Note Moyenne </h3></div>
                             @for($i = 0; $i < $avgRate; $i++)
@@ -23,6 +24,8 @@
                             @endfor
                             <p>({{ $recette->ratings->count() }})</p>
                         </div>
+                        @endif
+
 
                     </div>
                 <!-- / Photo -->

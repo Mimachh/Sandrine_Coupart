@@ -60,7 +60,7 @@
         <div class="w-full px-4 lg:w-1/2 xl:w-5/12">
         <h4 class="text-dark mb-1 text-md font-bold">Envoyer un message </h4>
         <small class="text-white italic"> Les champs marqué par * sont obligatoires</small>
-          <div class="relative rounded-lg bg-white p-8 shadow-lg sm:p-12">
+          <div class="text-black relative rounded-lg bg-white p-8 shadow-lg sm:p-12">
             <form method="POST" action="{{ route('contact.store') }}">
               @csrf
               <div class="mb-6">
@@ -80,7 +80,7 @@
                 @error('phone') <small class="text-red-600 italic"> {{ $errors->first('phone') }}</small>@enderror
               </div>
               <div class="mb-6">
-                <select id="subject_id" name="subject_id" class="focus:border-primary w-full rounded border py-3 px-4 text-base outline-none focus-visible:shadow-none">
+                <select id="subject_id" name="subject_id" class="focus:border-primary w-full rounded border py-3 px-4 outline-none focus-visible:shadow-none">
                   <option value="">- Choisir le sujet * -</option>
                   @foreach($subjects as $subject)
                   <option value="{{ $subject->id }}">{{ $subject->name }}</option>
@@ -93,7 +93,7 @@
                 @error('message') <small class="text-red-600 italic"> {{ $errors->first('message') }}</small>@enderror
               </div>
               <div>
-                <button class="bg-perso rounded-lg py-2 px-6 shadow hover:shadow-lg">Envoyer</button>
+                <button class="bg-perso text-white rounded-lg py-2 px-6 shadow hover:shadow-lg">Envoyer</button>
               </div>
             </form>
             <div>
